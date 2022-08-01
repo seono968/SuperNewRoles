@@ -88,5 +88,15 @@ namespace SuperNewRoles
             }
             AllBots = new();
         }
+
+
+        //Botに投票させる
+        public static void BotVote(MeetingHud __instance)
+        {
+            foreach(PlayerControl Bot in AllBots)
+            {
+                __instance.CastVote(Bot.PlayerId, Bot.PlayerId);
+            }
+        }
     }
 }
