@@ -7,7 +7,7 @@ namespace SuperNewRoles.Patch.Harmony.Meeting
     {
         static void Postfix(MeetingHud __instance)
         {
-            if (BotManager.AllBots != null) BotManager.BotVote(__instance);
+            if (BotManager.AllBots != null) new LateTask(()=> {BotManager.BotVote(__instance);}, 0.5f);
         }
     }
 }
