@@ -33,6 +33,9 @@ namespace SuperNewRoles.MapCustoms
     {
         public static void Prefix(IntroCutscene __instance)
         {
+            //壁タスク対策
+            Airship.AntiWallHackTask.HandleIntro();
+
             // ベントを追加する
             AdditionalVents.AddAdditionalVents();
 
