@@ -194,6 +194,16 @@ namespace SuperNewRoles.Mode.BattleRoyal
         }
         public static List<PlayerControl> Winners;
         public static bool IsViewAlivePlayer;
+
+        public const int KillScore = 1;
+        public const int TurnWinScore = 3;
+        public static void AddScore(PlayerControl player, int i)
+        {
+            if (!Scores.ContainsKey(player.PlayerId)) {
+                Scores[player.PlayerId] = 0;
+            }
+            Scores[player.PlayerId] += i;
+        }
         public static bool EndGameCheck(ShipStatus __instance)
         {
             if (IsTeamBattle)
@@ -296,12 +306,14 @@ namespace SuperNewRoles.Mode.BattleRoyal
         public static bool IsTeamBattle;
         public static List<List<PlayerControl>> Teams;
         static bool IsSeted;
+        public static Dictionary<byte, int> Scores;
         public static void ClearAndReload()
         {
             IsViewAlivePlayer = BROption.IsViewAlivePlayer.GetBool();
             AlivePlayer = 0;
             AllPlayer = 0;
             IsStart = false;
+            Scores = new();
             StartSeconds = BROption.StartSeconds.GetFloat() + 4.5f;
             IsCountOK = false;
             UpdateTime = 0f;
@@ -309,6 +321,22 @@ namespace SuperNewRoles.Mode.BattleRoyal
             Teams = new List<List<PlayerControl>>();
             IsSeted = false;
             Winners = new();
+        }
+        public static void SyncGameData()
+        {
+            MessageWriter writer = MessageWriter.Get(SendOption.Reliable);
+            writer.StartMessage(5);
+
+            writer.Write(AmongUsClient.Instance.GameId);
+            writer.StartMessage(1);
+            writer.WritePacked(GameData.Instance.NetId);
+            GameData.Instance.Serialize(writer, true);
+
+            writer.EndMessage();
+            writer.EndMessage();
+
+            AmongUsClient.Instance.SendOrDisconnect(writer);
+            writer.Recycle();
         }
         public static class ChangeRole
         {

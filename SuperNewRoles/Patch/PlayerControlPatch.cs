@@ -6,6 +6,7 @@ using Hazel;
 using InnerNet;
 using SuperNewRoles.Helpers;
 using SuperNewRoles.Mode;
+using SuperNewRoles.Mode.BattleRoyal;
 using SuperNewRoles.Mode.SuperHostRoles;
 using SuperNewRoles.Patch;
 using SuperNewRoles.Roles;
@@ -378,7 +379,16 @@ namespace SuperNewRoles.Patches
                         if (__instance.PlayerId != 0)
                         {
                             target.Data.IsDead = true;
-                            __instance.RpcMurderPlayer(target);
+                            if (BROption.TurnBattle.GetBool())
+                            {
+                                __instance.RpcShowGuardEffect(target);
+                                __instance.RpcSnapTo(target.GetTruePosition());
+                                Mode.BattleRoyal.Main.SyncGameData();
+                            }
+                            else
+                            {
+                                __instance.RpcMurderPlayer(target);
+                            }
                             isKill = false;
                         }
                         else
@@ -387,7 +397,17 @@ namespace SuperNewRoles.Patches
                             {
                                 if (__instance.IsAlive() && target.IsAlive())
                                 {
-                                    __instance.RpcMurderPlayer(target);
+                                    target.Data.IsDead = true;
+                                    if (BROption.TurnBattle.GetBool())
+                                    {
+                                        __instance.RpcShowGuardEffect(target);
+                                        __instance.RpcSnapTo(target.transform.position);
+                                        Mode.BattleRoyal.Main.SyncGameData();
+                                    }
+                                    else
+                                    {
+                                        __instance.RpcMurderPlayer(target);
+                                    }
                                 }
                                 isKill = false;
                             }, AmongUsClient.Instance.Ping / 1000f * 1.1f);
