@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SuperNewRoles.Buttons;
 using SuperNewRoles.Patch;
 
 using UnityEngine;
@@ -47,6 +48,58 @@ namespace SuperNewRoles.Roles.Impostor
         public static void ClearAndReload()
         {
             Player = new();
+        }
+
+        public static void AttachBomb(PlayerControl target)
+        {
+           /// new LateTask(() =>
+            //{
+                foreach (PlayerControl p in CachedPlayer.AllPlayers)
+                {
+                    if (p.IsAlive() && p.PlayerId != target.PlayerId)
+                        if (SelfBomber.GetIsBomb(target, p, BombScope.GetFloat()))
+                        {
+                            p.RpcMurderPlayer(p);
+                        }
+                }
+                target.RpcMurderPlayer(target);
+           // }, BombTime.GetFloat(), "Attach Bomb");
+        }
+
+        private static CustomButton StartButton; // 起爆ボタン
+        public static void SetupCustomButton(HudManager hm)
+        {
+            StartButton = new(
+                () =>
+                {
+                    if (PlayerControl.LocalPlayer.CanMove)
+                    {
+                        var target = HudManagerStartPatch.SetTarget();
+                        ResetCoolDown();
+                        AttachBomb(target);
+                    }
+                },
+                (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
+                () => { return PlayerControl.LocalPlayer.CanMove; },
+                () => {ResetCoolDown() ;},
+                RoleClass.SelfBomber.GetButtonSprite(),
+                new Vector3(-1.8f, -0.06f, 0),
+                hm,
+                hm.AbilityButton,
+                KeyCode.F,
+                49,
+                () => { return false; }
+            )
+            {
+                buttonText = ModTranslation.GetString("TimeBomberButtonName"),
+                showButtonText = true
+            };
+        }
+
+        public static void ResetCoolDown()
+        {
+            StartButton.Timer = StartTime.GetFloat();
+            StartButton.MaxTimer = StartTime.GetFloat();
         }
     }
 }
