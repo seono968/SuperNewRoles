@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using SuperNewRoles.CustomObject;
-
-
 using SuperNewRoles.Patch;
+using SuperNewRoles.Roles.Impostor;
 using SuperNewRoles.Sabotage;
 using TMPro;
 using UnityEngine;
@@ -3074,16 +3073,6 @@ namespace SuperNewRoles.Roles
                 Duration = DurationTime + 1.1f;
                 DoppelgangerTargets = new();
                 DefaultKillCool = PlayerControl.GameOptions.KillCooldown;
-            }
-        }
-        public static class TimeBomber
-        {
-            public static List<PlayerControl> TimeBomberPlayer;
-            public static Color32 color = ImpostorRed;
-            public static void ClearAndReload()
-            {
-                TimeBomberPlayer = new();
-                
             }
         }
         //新ロールクラス

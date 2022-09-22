@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using SuperNewRoles.Patch;
 using SuperNewRoles.Roles;
+using SuperNewRoles.Roles.Impostor;
 using UnityEngine;
 
 namespace SuperNewRoles.Modules
@@ -220,7 +220,7 @@ namespace SuperNewRoles.Modules
         public static IntroDate ShiftActorIntro = new("ShiftActor", Roles.Impostor.ShiftActor.color, 1, RoleId.ShiftActor, TeamRoleType.Impostor);
         public static IntroDate ConnectKillerIntro = new("ConnectKiller", RoleClass.ConnectKiller.color, 1, RoleId.ConnectKiller, TeamRoleType.Impostor);
         public static IntroDate DoppelgangerIntro = new("Doppelganger", RoleClass.Doppelganger.color, 1, RoleId.Doppelganger, TeamRoleType.Impostor);
-        public static IntroDate TimeBomberIntro = new("TimeBomber", RoleClass.TimeBomber.color, 1, RoleId.TimeBomber, TeamRoleType.Impostor);
+        public static IntroDate TimeBomberIntro = new("TimeBomber", TimeBomber.color, 1, RoleId.TimeBomber, TeamRoleType.Impostor);
         //イントロオブジェ
     }
 }

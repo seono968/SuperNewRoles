@@ -623,7 +623,7 @@ namespace SuperNewRoles
                     RoleClass.Doppelganger.DoppelggerPlayer.Add(player);
                     break;
                 case RoleId.TimeBomber:
-                    RoleClass.TimeBomber.TimeBomberPlayer.Add(player);
+                    TimeBomber.Player.Add(player);
                     break;
                 //ロールアド
                 default:
@@ -1049,9 +1049,9 @@ namespace SuperNewRoles
                     RoleClass.Doppelganger.DoppelggerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.TimeBomber:
-                    RoleClass.TimeBomber.TimeBomberPlayer.RemoveAll(ClearRemove);
+                    TimeBomber.Player.RemoveAll(ClearRemove);
                     break;
-                //ロールリモベ
+                    //ロールリモベ
             }
             ChacheManager.ResetMyRoleChache();
         }
@@ -1109,7 +1109,7 @@ namespace SuperNewRoles
                 case RoleId.Stefinder:
                 case RoleId.PartTimer:
                 case RoleId.Photographer:
-                //タスククリアか
+                    //タスククリアか
                     IsTaskClear = true;
                     break;
             }
@@ -1272,7 +1272,7 @@ namespace SuperNewRoles
                 case RoleId.Stefinder:
                 case RoleId.PartTimer:
                 case RoleId.Photographer:
-                //第三か
+                    //第三か
                     IsNeutral = true;
                     break;
             }
@@ -1568,7 +1568,7 @@ namespace SuperNewRoles
                 else if (ShiftActor.Player.IsCheckListPlayerControl(player)) return RoleId.ShiftActor;
                 else if (RoleClass.ConnectKiller.ConnectKillerPlayer.IsCheckListPlayerControl(player)) return RoleId.ConnectKiller;
                 else if (RoleClass.Doppelganger.DoppelggerPlayer.IsCheckListPlayerControl(player)) return RoleId.Doppelganger;
-                else if (RoleClass.TimeBomber.TimeBomberPlayer.IsCheckListPlayerControl(player)) return RoleId.TimeBomber;
+                else if (TimeBomber.Player.IsCheckListPlayerControl(player)) return RoleId.TimeBomber;
                 //ロールチェック
             }
             catch (Exception e)
