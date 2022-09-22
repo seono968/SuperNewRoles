@@ -103,6 +103,7 @@ namespace SuperNewRoles.Patch
                     JackalSeer.JackalSeerFixedPatch.Postfix(__instance, MyRole);
                     Roles.CrewMate.Psychometrist.FixedUpdate();
                     Roles.Impostor.Matryoshka.FixedUpdate();
+                    Roles.Impostor.TimeBomber.ArrowUpdate();
                     reduceKillCooldown(__instance);
                     if (PlayerControl.LocalPlayer.IsAlive())
                     {

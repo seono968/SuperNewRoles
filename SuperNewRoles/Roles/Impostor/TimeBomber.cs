@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SuperNewRoles.Buttons;
+using SuperNewRoles.CustomObject;
 using SuperNewRoles.Patch;
 
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace SuperNewRoles.Roles.Impostor
         public static CO CanNotMoveTime;    // 起爆時動けない時間
         public static CO ExtensionKillCool; // 起爆時に伸びるキルクールの量
         public static CO IsArrow;           // 起爆時に矢印を表示するか
+        public static CO ArrowDuration;     // 矢印の表示されている時間
         public static CO ArrowScope;        // 起爆時に矢印を表示する半径
 
         public static void SetupCustomOptions()
@@ -39,14 +41,17 @@ namespace SuperNewRoles.Roles.Impostor
             CanNotMoveTime = CO.Create(id + 6, false, COT.Impostor, "CanNotMoveTime", 5, 0, 10, 0.5f, Option);
             ExtensionKillCool = CO.Create(id + 7, false, COT.Impostor, "ExtensionKillCool", 10, 0, 30, 2.5f, Option);
             IsArrow = CO.Create(id + 8, false, COT.Impostor, "BombArrow", true, Option);
-            ArrowScope = CO.Create(id + 9, false, COT.Impostor, "ArrowScope", 4, 0.5f, 10, 0.5f, IsArrow);
+            ArrowDuration = CO.Create(id + 9, false, COT.Impostor, "ArrowDuration", 20, 0, 60, 2.5f, IsArrow);
+            ArrowScope = CO.Create(id + 10, false, COT.Impostor, "ArrowScope", 4, 0.5f, 10, 0.5f, IsArrow);
         }
 
         public static List<PlayerControl> Player;
         public static Color32 color = RoleClass.ImpostorRed;
         public static List<PlayerControl> AllTarget; // 爆破した全てのターゲット
         public static List<PlayerControl> NowTarget; // 今のターゲット
-        public static float NowBombTime;
+        public static float NowBombTime;// 今のキルク
+        public static Arrow ARROW = null;
+        public static float ArrowTime;
 
         public static void ClearAndReload()
         {
@@ -54,6 +59,14 @@ namespace SuperNewRoles.Roles.Impostor
             AllTarget = new();
             NowTarget = new();
             NowBombTime = BombTime.GetFloat();
+            if (ARROW != null)
+            {
+                GameObject.Destroy(ARROW.arrow);
+            }
+            ARROW = new(color);
+            ARROW.arrow.SetActive(false);
+
+            ArrowTime = ArrowDuration.GetFloat();
         }
 
         public static void AttachBomb(PlayerControl target)
@@ -88,7 +101,6 @@ namespace SuperNewRoles.Roles.Impostor
                             AttachBomb(target);
                             NowTarget.Remove(target);
                         }, BombTime.GetFloat(), "Time bomber attach");
-                        Logger.Info($"{AllTarget.Count}","All Target Count");
                     }
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
@@ -144,6 +156,40 @@ namespace SuperNewRoles.Roles.Impostor
         {
             BombButton.Timer = NowBombTime;
             BombButton.MaxTimer = NowBombTime;
+        }
+
+        public static void ArrowUpdate()
+        {
+            try
+            {
+                if (!IsArrow.GetBool()) return;
+                if (ARROW != null)
+                {
+                    if (AllTarget.Count != 0)
+                    {
+                        foreach (PlayerControl p in AllTarget)
+                        {
+                            if (Vector2.Distance(PlayerControl.LocalPlayer.transform.position, p.transform.position) <= ArrowScope.GetFloat())
+                            {
+                                ARROW.arrow.SetActive(true);
+                                ARROW.Update(p.transform.position);
+                            }
+                            else
+                            {
+                                ARROW.arrow.SetActive(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ARROW.arrow.SetActive(false);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Info($"ArrowUpdateで例外が発生{e}", "TimeBomber");
+            }
         }
     }
 }
