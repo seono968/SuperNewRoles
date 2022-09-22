@@ -52,18 +52,18 @@ namespace SuperNewRoles.Roles.Impostor
 
         public static void AttachBomb(PlayerControl target)
         {
-           /// new LateTask(() =>
+            /// new LateTask(() =>
             //{
-                foreach (PlayerControl p in CachedPlayer.AllPlayers)
-                {
-                    if (p.IsAlive() && p.PlayerId != target.PlayerId)
-                        if (SelfBomber.GetIsBomb(target, p, BombScope.GetFloat()))
-                        {
-                            p.RpcMurderPlayer(p);
-                        }
-                }
-                target.RpcMurderPlayer(target);
-           // }, BombTime.GetFloat(), "Attach Bomb");
+            foreach (PlayerControl p in CachedPlayer.AllPlayers)
+            {
+                if (p.IsAlive() && p.PlayerId != target.PlayerId)
+                    if (SelfBomber.GetIsBomb(target, p, BombScope.GetFloat()))
+                    {
+                        p.RpcMurderPlayer(p);
+                    }
+            }
+            target.RpcMurderPlayer(target);
+            // }, BombTime.GetFloat(), "Attach Bomb");
         }
 
         private static CustomButton StartButton; // 起爆ボタン
@@ -81,7 +81,7 @@ namespace SuperNewRoles.Roles.Impostor
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
                 () => { return PlayerControl.LocalPlayer.CanMove; },
-                () => {ResetCoolDown() ;},
+                () => { ResetCoolDown(); },
                 RoleClass.SelfBomber.GetButtonSprite(),
                 new Vector3(-1.8f, -0.06f, 0),
                 hm,
