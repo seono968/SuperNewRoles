@@ -79,17 +79,20 @@ namespace SuperNewRoles.Roles.Impostor
             BombButton = new(
                 () =>
                 {
-                    if (PlayerControl.LocalPlayer.CanMove)
+                    if (PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget())
                     {
                         var target = HudManagerStartPatch.SetTarget();
+                        NowTarget.Add(target);
                         new LateTask(() =>
                         {
                             AttachBomb(target);
+                            NowTarget.Remove(target);
                         }, BombTime.GetFloat(), "Time bomber attach");
+                        Logger.Info($"{AllTarget.Count}","All Target Count");
                     }
                 },
-                (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && HudManagerStartPatch.SetTarget(); },
-                () => { return PlayerControl.LocalPlayer.CanMove; },
+                (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
+                () => { return PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget(); },
                 () => { ResetBombCoolDown(); },
                 RoleClass.SelfBomber.GetButtonSprite(),
                 new Vector3(0, 1, 0),
@@ -107,7 +110,7 @@ namespace SuperNewRoles.Roles.Impostor
             StartButton = new(
                 () =>
                 {
-                    if (PlayerControl.LocalPlayer.CanMove)
+                    if (PlayerControl.LocalPlayer.CanMove && NowTarget.Count != 0)
                     {
                         var target = HudManagerStartPatch.SetTarget();
                         ResetStartCoolDown();
@@ -116,7 +119,7 @@ namespace SuperNewRoles.Roles.Impostor
                     }
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
-                () => { return PlayerControl.LocalPlayer.CanMove; },
+                () => { return PlayerControl.LocalPlayer.CanMove && NowTarget.Count != 0; },
                 () => { ResetStartCoolDown(); },
                 RoleClass.SelfBomber.GetButtonSprite(),
                 new Vector3(-1.8f, -0.06f, 0),
