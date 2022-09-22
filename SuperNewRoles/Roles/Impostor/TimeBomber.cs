@@ -44,44 +44,80 @@ namespace SuperNewRoles.Roles.Impostor
 
         public static List<PlayerControl> Player;
         public static Color32 color = RoleClass.ImpostorRed;
+        public static List<PlayerControl> AllTarget; // 爆破した全てのターゲット
+        public static List<PlayerControl> NowTarget; // 今のターゲット
+        public static float NowBombTime;
 
         public static void ClearAndReload()
         {
             Player = new();
+            AllTarget = new();
+            NowTarget = new();
+            NowBombTime = BombTime.GetFloat();
         }
 
         public static void AttachBomb(PlayerControl target)
         {
-            /// new LateTask(() =>
-            //{
+            if (AllTarget.Contains(target)) return; // targetがすでに爆破されているなら破棄
+
             foreach (PlayerControl p in CachedPlayer.AllPlayers)
             {
                 if (p.IsAlive() && p.PlayerId != target.PlayerId)
                     if (SelfBomber.GetIsBomb(target, p, BombScope.GetFloat()))
                     {
-                        p.RpcMurderPlayer(p);
+                        target.RpcMurderPlayer(p);
                     }
             }
             target.RpcMurderPlayer(target);
-            // }, BombTime.GetFloat(), "Attach Bomb");
+            AllTarget.Add(target);
         }
 
+        private static CustomButton BombButton;  // 爆弾取り付けボタン
         private static CustomButton StartButton; // 起爆ボタン
         public static void SetupCustomButton(HudManager hm)
         {
+            BombButton = new(
+                () =>
+                {
+                    if (PlayerControl.LocalPlayer.CanMove)
+                    {
+                        var target = HudManagerStartPatch.SetTarget();
+                        new LateTask(() =>
+                        {
+                            AttachBomb(target);
+                        }, BombTime.GetFloat(), "Time bomber attach");
+                    }
+                },
+                (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && HudManagerStartPatch.SetTarget(); },
+                () => { return PlayerControl.LocalPlayer.CanMove; },
+                () => { ResetBombCoolDown(); },
+                RoleClass.SelfBomber.GetButtonSprite(),
+                new Vector3(0, 1, 0),
+                hm,
+                hm.AbilityButton,
+                KeyCode.Q,
+                8,
+                () => { return false; }
+            )
+            {
+                buttonText = ModTranslation.GetString("TimeBomberBombName"),
+                showButtonText = true
+            };
+
             StartButton = new(
                 () =>
                 {
                     if (PlayerControl.LocalPlayer.CanMove)
                     {
                         var target = HudManagerStartPatch.SetTarget();
-                        ResetCoolDown();
+                        ResetStartCoolDown();
                         AttachBomb(target);
+                        NowBombTime += ExtensionKillCool.GetFloat();
                     }
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
                 () => { return PlayerControl.LocalPlayer.CanMove; },
-                () => { ResetCoolDown(); },
+                () => { ResetStartCoolDown(); },
                 RoleClass.SelfBomber.GetButtonSprite(),
                 new Vector3(-1.8f, -0.06f, 0),
                 hm,
@@ -91,15 +127,20 @@ namespace SuperNewRoles.Roles.Impostor
                 () => { return false; }
             )
             {
-                buttonText = ModTranslation.GetString("TimeBomberButtonName"),
+                buttonText = ModTranslation.GetString("TimeBomberStartName"),
                 showButtonText = true
             };
         }
 
-        public static void ResetCoolDown()
+        public static void ResetStartCoolDown()
         {
             StartButton.Timer = StartTime.GetFloat();
             StartButton.MaxTimer = StartTime.GetFloat();
+        }
+        public static void ResetBombCoolDown()
+        {
+            BombButton.Timer = NowBombTime;
+            BombButton.MaxTimer = NowBombTime;
         }
     }
 }
