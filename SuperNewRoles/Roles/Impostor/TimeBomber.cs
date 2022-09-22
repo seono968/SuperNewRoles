@@ -175,15 +175,11 @@ namespace SuperNewRoles.Roles.Impostor
                                 ARROW.Update(p.transform.position);
                             }
                             else
-                            {
                                 ARROW.arrow.SetActive(false);
-                            }
                         }
                     }
                     else
-                    {
                         ARROW.arrow.SetActive(false);
-                    }
                 }
             }
             catch (Exception e)
