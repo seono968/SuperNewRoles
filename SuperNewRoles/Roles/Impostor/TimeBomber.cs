@@ -21,7 +21,7 @@ namespace SuperNewRoles.Roles.Impostor
     ・爆発時は自爆魔のようなキルをしその爆発には味方のインポスターや自身も巻き込まれる
     ・起動した爆弾がついたプレイヤーの名前には爆弾マークがつき他のインポスターからだけつけられていることが分かる
     ・会議中は全員爆弾マークを見ることが出来る
-    !・会議が終わると爆弾は解除される
+    ・会議が終わると爆弾は解除される
     ・爆弾が爆発するか解除されるまで次の爆弾は付けられない
 
     ・「起爆」ボタンを持ち、起動した爆弾がある時にのみ押すことが出来る
@@ -133,7 +133,7 @@ namespace SuperNewRoles.Roles.Impostor
             BombButton = new(
                 () =>
                 {
-                    if (PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget())
+                    if (PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget() && NowTarget.Count == 0)
                     {
                         var target = HudManagerStartPatch.SetTarget();
                         NowTarget.Add(target);
@@ -145,7 +145,7 @@ namespace SuperNewRoles.Roles.Impostor
                     }
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
-                () => { return PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget(); },
+                () => { return PlayerControl.LocalPlayer.CanMove && HudManagerStartPatch.SetTarget() && NowTarget.Count == 0; },
                 () => { ResetBombCoolDown(); },
                 RoleClass.SelfBomber.GetButtonSprite(),
                 new Vector3(0, 1, 0),
