@@ -319,14 +319,11 @@ namespace SuperNewRoles.Patch
                 Logger.Info("通過1", "TimeBomberSet");
                 foreach (PlayerControl player in Roles.Impostor.TimeBomber.NowTarget)
                 {
-                    //if (Roles.Impostor.TimeBomber.NowTarget.Contains(player))
+                    Logger.Info("通過2", "TimeBomberSet");
+                    if (!player.NameText().text.Contains(ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark)))
                     {
-                        Logger.Info("通過2", "TimeBomberSet");
-                        if (!player.NameText().text.Contains(ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark)))
-                        {
-                            Logger.Info("通過3", "TimeBomberSet");
-                            SetPlayerNameText(player, player.NameText().text + ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark));
-                        }
+                        Logger.Info("通過3", "TimeBomberSet");
+                        SetPlayerNameText(player, player.NameText().text + ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark));
                     }
                 }
             }
