@@ -313,7 +313,9 @@ namespace SuperNewRoles.Patch
         }
         public static void TimeBomberSet()
         {
-            if ((!PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && PlayerControl.LocalPlayer.IsImpostor()) || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God))
+            Logger.Info("KITAAAAAAAAAAAAAAAAAAAAAAa");
+            if ((!PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && PlayerControl.LocalPlayer.IsImpostor())
+                || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God) || RoleClass.IsMeeting)
                 foreach (PlayerControl player in Roles.Impostor.TimeBomber.NowTarget)
                     if (!player.NameText().text.Contains(ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark)))
                         SetPlayerNameText(player, player.NameText().text + ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark));
