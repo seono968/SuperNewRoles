@@ -313,7 +313,6 @@ namespace SuperNewRoles.Patch
         }
         public static void TimeBomberSet()
         {
-            Logger.Info("KITAAAAAAAAAAAAAAAAAAAAAAa");
             if ((!PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && PlayerControl.LocalPlayer.IsImpostor())
                 || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God) || RoleClass.IsMeeting)
                 foreach (PlayerControl player in Roles.Impostor.TimeBomber.NowTarget)
