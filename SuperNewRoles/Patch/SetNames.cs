@@ -313,7 +313,7 @@ namespace SuperNewRoles.Patch
         }
         public static void TimeBomberSet()
         {
-            if (PlayerControl.LocalPlayer.IsImpostor() || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God))
+            if ((!PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber) && PlayerControl.LocalPlayer.IsImpostor()) || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God))
             {
                 foreach (PlayerControl player in Roles.Impostor.TimeBomber.NowTarget)
                 {
