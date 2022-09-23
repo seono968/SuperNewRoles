@@ -164,11 +164,11 @@ namespace SuperNewRoles.Roles.Impostor
                 () =>
                 {
                     if (PlayerControl.LocalPlayer.CanMove && NowTarget.Count != 0)
-                    {/*
+                    {
                         var target = HudManagerStartPatch.SetTarget();
                         ResetStartCoolDown();
                         AttachBomb(target);
-                        NowBombTime += ExtensionKillCool.GetFloat();*/
+                        NowBombTime += ExtensionKillCool.GetFloat();
 
                         IsSpeedDown = true;
                         new LateTask(() =>
@@ -210,19 +210,23 @@ namespace SuperNewRoles.Roles.Impostor
             try
             {
                 if (!IsArrow.GetBool()) return;
+                if (RoleClass.IsMeeting) { ARROW.arrow.SetActive(false); return; }
                 if (ARROW != null)
                 {
                     if (AllTarget.Count != 0)
                     {
                         foreach (PlayerControl p in AllTarget)
                         {
-                            if (Vector2.Distance(PlayerControl.LocalPlayer.transform.position, p.transform.position) <= ArrowScope.GetFloat())
+                            if (p.IsDead())
                             {
-                                ARROW.arrow.SetActive(true);
-                                ARROW.Update(p.transform.position);
+                                if (Vector2.Distance(PlayerControl.LocalPlayer.transform.position, p.transform.position) <= ArrowScope.GetFloat())
+                                {
+                                    ARROW.arrow.SetActive(true);
+                                    ARROW.Update(p.transform.position);
+                                }
+                                else
+                                    ARROW.arrow.SetActive(false);
                             }
-                            else
-                                ARROW.arrow.SetActive(false);
                         }
                     }
                     else
