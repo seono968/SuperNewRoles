@@ -7,8 +7,8 @@ using SuperNewRoles.Patch;
 
 using UnityEngine;
 
-
-
+using HarmonyLib;
+using SuperNewRoles.Mode;
 
 using COT = SuperNewRoles.Patch.CustomOptionType;
 using CO = SuperNewRoles.Patch.CustomOption;
@@ -27,6 +27,7 @@ namespace SuperNewRoles.Roles.Impostor
     ・「起爆」ボタンを持ち、起動した爆弾がある時にのみ押すことが出来る
     ・押すことで自分がつけた爆弾を即起爆できるが、
     !自身は一定時間移動できなくなりキルクールが伸びる
+
     ・また、爆破地点から一定範囲内のプレイヤーに爆破地点への矢印が
     !一定時間表示される
     */
@@ -67,6 +68,7 @@ namespace SuperNewRoles.Roles.Impostor
         public static float NowBombTime;// 今のキルク
         public static Arrow ARROW = null;
         public static float ArrowTime;
+        public static bool IsSpeedDown;
         public const string NameBombMark = " ★";
 
         public static void ClearAndReload()
@@ -83,12 +85,15 @@ namespace SuperNewRoles.Roles.Impostor
             ARROW.arrow.SetActive(false);
 
             ArrowTime = ArrowDuration.GetFloat();
+
+            IsSpeedDown = false;
         }
 
         public static void AttachBomb(PlayerControl target)
         {
             if (AllTarget.Contains(target)) return; // targetがすでに爆破されているなら破棄
-            if (RoleClass.IsMeeting) {
+            if (RoleClass.IsMeeting)
+            {
                 AllTarget.Remove(target);
                 NowTarget.Remove(target);
                 return;
@@ -106,6 +111,21 @@ namespace SuperNewRoles.Roles.Impostor
             AllTarget.Add(target);
         }
 
+        [HarmonyPatch(typeof(PlayerPhysics), nameof(PlayerPhysics.FixedUpdate))]
+        public static class PlayerPhysicsSpeedPatch
+        {
+            public static void Postfix(PlayerPhysics __instance)
+            {
+                if (AmongUsClient.Instance.GameState != AmongUsClient.GameStates.Started) return;
+                if (!ModeHandler.IsMode(ModeId.Default)) return;
+
+                if (IsSpeedDown && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber))
+                {
+                    Logger.Info("KIMASHITA");
+                    __instance.body.velocity = new Vector2(0f, 0f);
+                }
+            }
+        }
         private static CustomButton BombButton;  // 爆弾取り付けボタン
         private static CustomButton StartButton; // 起爆ボタン
         public static void SetupCustomButton(HudManager hm)
@@ -144,11 +164,17 @@ namespace SuperNewRoles.Roles.Impostor
                 () =>
                 {
                     if (PlayerControl.LocalPlayer.CanMove && NowTarget.Count != 0)
-                    {
+                    {/*
                         var target = HudManagerStartPatch.SetTarget();
                         ResetStartCoolDown();
                         AttachBomb(target);
-                        NowBombTime += ExtensionKillCool.GetFloat();
+                        NowBombTime += ExtensionKillCool.GetFloat();*/
+
+                        IsSpeedDown = true;
+                        new LateTask(() =>
+                        {
+                            IsSpeedDown = false;
+                        }, CanNotMoveTime.GetFloat(), "Time bomber speed reset");
                     }
                 },
                 (bool isAlive, RoleId role) => { return isAlive && PlayerControl.LocalPlayer.IsRole(RoleId.TimeBomber); },
