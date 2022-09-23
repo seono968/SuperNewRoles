@@ -88,6 +88,11 @@ namespace SuperNewRoles.Roles.Impostor
         public static void AttachBomb(PlayerControl target)
         {
             if (AllTarget.Contains(target)) return; // targetがすでに爆破されているなら破棄
+            if (RoleClass.IsMeeting) {
+                AllTarget.Remove(target);
+                NowTarget.Remove(target);
+                return;
+            }
 
             foreach (PlayerControl p in CachedPlayer.AllPlayers)
             {
