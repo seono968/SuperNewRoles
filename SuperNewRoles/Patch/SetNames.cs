@@ -313,16 +313,12 @@ namespace SuperNewRoles.Patch
         }
         public static void TimeBomberSet()
         {
-            Logger.Info("来ました", "TimeBomberSet");
             if (PlayerControl.LocalPlayer.IsImpostor() || PlayerControl.LocalPlayer.IsDead() || PlayerControl.LocalPlayer.IsRole(RoleId.God))
             {
-                Logger.Info("通過1", "TimeBomberSet");
                 foreach (PlayerControl player in Roles.Impostor.TimeBomber.NowTarget)
                 {
-                    Logger.Info("通過2", "TimeBomberSet");
                     if (!player.NameText().text.Contains(ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark)))
                     {
-                        Logger.Info("通過3", "TimeBomberSet");
                         SetPlayerNameText(player, player.NameText().text + ModHelpers.Cs(Roles.Impostor.TimeBomber.color, Roles.Impostor.TimeBomber.NameBombMark));
                     }
                 }
