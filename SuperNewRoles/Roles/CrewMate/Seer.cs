@@ -4,7 +4,6 @@ using HarmonyLib;
 using SuperNewRoles.Patch;
 using UnityEngine;
 using static SuperNewRoles.Modules.CustomOptions;
-using static SuperNewRoles.Roles.RoleClass;
 
 namespace SuperNewRoles.Roles.CrewMate
 {
@@ -34,7 +33,7 @@ namespace SuperNewRoles.Roles.CrewMate
         }
 
         /*============CustomOptionDateSTART============*/
-        public const int OptionId = 318;// 設定のId
+        private const int OptionId = 318;// 設定のId
         public static CustomRoleOption SeerOption;
         public static CustomOption SeerPlayerCount;
         public static CustomOption SeerMode;

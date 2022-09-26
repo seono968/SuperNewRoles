@@ -8,8 +8,8 @@ namespace SuperNewRoles.Roles.Impostor
 {
     public static class EvilSeer
     {
-        public const int OptionId = 334;// 設定のId
-        // CustomOptionDate
+        private const int OptionId = 334;// 設定のId
+        /*============CustomOptionDateSTART============*/
         public static CustomRoleOption EvilSeerOption;
         public static CustomOption EvilSeerPlayerCount;
         public static CustomOption EvilSeerMode;
@@ -27,8 +27,9 @@ namespace SuperNewRoles.Roles.Impostor
             EvilSeerLimitSoulDuration = CustomOption.Create(OptionId + 3, false, CustomOptionType.Impostor, "SeerLimitSoulDuration", false, EvilSeerOption);
             EvilSeerSoulDuration = CustomOption.Create(OptionId + 4, false, CustomOptionType.Impostor, "SeerSoulDuration", 15f, 0f, 120f, 5f, EvilSeerLimitSoulDuration, format: "unitCouples");
         }
+        /*============CustomOptionDateEND==============*/
 
-        // RoleClass
+        /*============RoleClassSTART===================*/
         public static List<PlayerControl> EvilSeerPlayer;
         public static Color32 color = ImpostorRed;
         public static List<Vector3> deadBodyPositions;
@@ -40,6 +41,6 @@ namespace SuperNewRoles.Roles.Impostor
             deadBodyPositions = new();
             soulDuration = EvilSeerSoulDuration.GetFloat();
         }
-
+        /*============RoleClassEND=====================*/
     }
 }
