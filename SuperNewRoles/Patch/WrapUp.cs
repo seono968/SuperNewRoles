@@ -106,7 +106,7 @@ namespace SuperNewRoles.Patch
             Roles.Neutral.Photographer.WrapUp();
             if (exiled == null) return;
 
-            Seer.ExileControllerWrapUpPatch.WrapUpPostfix();
+            Roles.CrewMate.Seer.ExileControllerWrapUpPatch.WrapUpPostfix();
             Nekomata.NekomataEnd(exiled);
 
             exiled.Object.Exiled();

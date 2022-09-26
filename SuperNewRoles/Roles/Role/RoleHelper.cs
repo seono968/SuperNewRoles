@@ -452,7 +452,7 @@ namespace SuperNewRoles
                     RoleClass.DarkKiller.DarkKillerPlayer.Add(player);
                     break;
                 case RoleId.Seer:
-                    RoleClass.Seer.SeerPlayer.Add(player);
+                    Roles.CrewMate.Seer.SeerPlayer.Add(player);
                     break;
                 case RoleId.MadSeer:
                     RoleClass.MadSeer.MadSeerPlayer.Add(player);
@@ -881,7 +881,7 @@ namespace SuperNewRoles
                     RoleClass.DarkKiller.DarkKillerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.Seer:
-                    RoleClass.Seer.SeerPlayer.RemoveAll(ClearRemove);
+                    Roles.CrewMate.Seer.SeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.MadSeer:
                     RoleClass.MadSeer.MadSeerPlayer.RemoveAll(ClearRemove);
@@ -1498,7 +1498,7 @@ namespace SuperNewRoles
                 else if (RoleClass.Observer.ObserverPlayer.IsCheckListPlayerControl(player)) return RoleId.Observer;
                 else if (RoleClass.Vampire.VampirePlayer.IsCheckListPlayerControl(player)) return RoleId.Vampire;
                 else if (RoleClass.DarkKiller.DarkKillerPlayer.IsCheckListPlayerControl(player)) return RoleId.DarkKiller;
-                else if (RoleClass.Seer.SeerPlayer.IsCheckListPlayerControl(player)) return RoleId.Seer;
+                else if (Roles.CrewMate.Seer.SeerPlayer.IsCheckListPlayerControl(player)) return RoleId.Seer;
                 else if (RoleClass.MadSeer.MadSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.MadSeer;
                 else if (EvilSeer.EvilSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.EvilSeer;
                 else if (RoleClass.RemoteSheriff.RemoteSheriffPlayer.IsCheckListPlayerControl(player)) return RoleId.RemoteSheriff;

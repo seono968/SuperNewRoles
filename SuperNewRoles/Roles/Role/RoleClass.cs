@@ -123,7 +123,7 @@ namespace SuperNewRoles.Roles
             Vampire.ClearAndReload();
             Fox.ClearAndReload();
             DarkKiller.ClearAndReload();
-            Seer.ClearAndReload();
+            CrewMate.Seer.ClearAndReload();
             MadSeer.ClearAndReload();
             Impostor.EvilSeer.ClearAndReload();
             RemoteSheriff.ClearAndReload();
@@ -1522,21 +1522,7 @@ namespace SuperNewRoles.Roles
                 KillButtonDisable = false;
             }
         }
-        public static class Seer
-        {
-            public static List<PlayerControl> SeerPlayer;
-            public static Color color = new Color32(97, 178, 108, byte.MaxValue);
-            public static List<Vector3> deadBodyPositions;
 
-            public static float soulDuration;
-
-            public static void ClearAndReload()
-            {
-                SeerPlayer = new();
-                deadBodyPositions = new();
-                soulDuration = CustomOptions.SeerSoulDuration.GetFloat();
-            }
-        }
         public static class MadSeer
         {
             public static List<PlayerControl> MadSeerPlayer;

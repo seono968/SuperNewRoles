@@ -872,7 +872,7 @@ namespace SuperNewRoles
                 RoleId.Observer => CustomOptions.ObserverPlayerCount.GetFloat(),
                 RoleId.Vampire => CustomOptions.VampirePlayerCount.GetFloat(),
                 RoleId.DarkKiller => CustomOptions.DarkKillerPlayerCount.GetFloat(),
-                RoleId.Seer => CustomOptions.SeerPlayerCount.GetFloat(),
+                RoleId.Seer => Roles.CrewMate.Seer.SeerPlayerCount.GetFloat(),
                 RoleId.MadSeer => CustomOptions.MadSeerPlayerCount.GetFloat(),
                 RoleId.EvilSeer => Roles.Impostor.EvilSeer.EvilSeerPlayerCount.GetFloat(),
                 RoleId.RemoteSheriff => CustomOptions.RemoteSheriffPlayerCount.GetFloat(),

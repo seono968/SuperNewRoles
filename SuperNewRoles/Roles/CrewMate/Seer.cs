@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using HarmonyLib;
-
+using SuperNewRoles.Patch;
 using UnityEngine;
+using static SuperNewRoles.Modules.CustomOptions;
+using static SuperNewRoles.Roles.RoleClass;
 
-namespace SuperNewRoles.Roles
+namespace SuperNewRoles.Roles.CrewMate
 {
     class Seer
     //マッド・イビル・フレンズ・ジャッカル・サイドキック　シーア
@@ -30,6 +32,42 @@ namespace SuperNewRoles.Roles
                 if (p == 1f && renderer != null) renderer.enabled = false;
             })));
         }
+
+        /*============CustomOptionDateSTART============*/
+        public const int OptionId = 318;// 設定のId
+        public static CustomRoleOption SeerOption;
+        public static CustomOption SeerPlayerCount;
+        public static CustomOption SeerMode;
+        public static CustomOption SeerModeBoth;
+        public static CustomOption SeerModeFlash;
+        public static CustomOption SeerModeSouls;
+        public static CustomOption SeerLimitSoulDuration;
+        public static CustomOption SeerSoulDuration;
+        public static void SetupCustomOptions()
+        {
+
+            SeerOption = new(318, false, CustomOptionType.Crewmate, "SeerName", color, 1);
+            SeerPlayerCount = CustomOption.Create(319, false, CustomOptionType.Crewmate, "SettingPlayerCountName", CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], SeerOption);
+            SeerMode = CustomOption.Create(320, false, CustomOptionType.Crewmate, "SeerMode", new string[] { "SeerModeBoth", "SeerModeFlash", "SeerModeSouls" }, SeerOption);
+            SeerLimitSoulDuration = CustomOption.Create(321, false, CustomOptionType.Crewmate, "SeerLimitSoulDuration", false, SeerOption);
+            SeerSoulDuration = CustomOption.Create(322, false, CustomOptionType.Crewmate, "SeerSoulDuration", 15f, 0f, 120f, 5f, SeerLimitSoulDuration, format: "unitCouples");
+        }
+        /*============CustomOptionDateEND==============*/
+
+        /*============RoleClassSTART===================*/
+        public static List<PlayerControl> SeerPlayer;
+        public static Color color = new Color32(97, 178, 108, byte.MaxValue);
+        public static List<Vector3> deadBodyPositions;
+
+        public static float soulDuration;
+
+        public static void ClearAndReload()
+        {
+            SeerPlayer = new();
+            deadBodyPositions = new();
+            soulDuration = SeerSoulDuration.GetFloat();
+        }
+        /*============RoleClassEND=====================*/
         private static Sprite SoulSprite;
         public static Sprite GetSoulSprite()
         {
@@ -51,11 +89,11 @@ namespace SuperNewRoles.Roles
                     switch (role)
                     {
                         case RoleId.Seer:
-                            DeadBodyPositions = RoleClass.Seer.deadBodyPositions;
-                            RoleClass.Seer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = CustomOptions.SeerLimitSoulDuration.GetBool();
-                            soulDuration = RoleClass.Seer.soulDuration;
-                            if (CustomOptions.SeerMode.GetSelection() is not 0 and not 2) return;
+                            DeadBodyPositions = Seer.deadBodyPositions;
+                            Seer.deadBodyPositions = new List<Vector3>();
+                            limitSoulDuration = SeerLimitSoulDuration.GetBool();
+                            soulDuration = Seer.soulDuration;
+                            if (SeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.MadSeer:
                             DeadBodyPositions = RoleClass.MadSeer.deadBodyPositions;
@@ -123,8 +161,8 @@ namespace SuperNewRoles.Roles
                         switch (role)
                         {
                             case RoleId.Seer:
-                                if (RoleClass.Seer.deadBodyPositions != null) RoleClass.Seer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = CustomOptions.SeerMode.GetSelection() <= 1;
+                                if (Seer.deadBodyPositions != null) Seer.deadBodyPositions.Add(target.transform.position);
+                                ModeFlag = SeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.MadSeer:
                                 if (RoleClass.MadSeer.deadBodyPositions != null) RoleClass.MadSeer.deadBodyPositions.Add(target.transform.position);

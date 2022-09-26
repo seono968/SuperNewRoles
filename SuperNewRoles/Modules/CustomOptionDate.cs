@@ -463,15 +463,6 @@ namespace SuperNewRoles.Modules
         public static CustomOption DarkKillerPlayerCount;
         public static CustomOption DarkKillerKillCoolTime;
 
-        public static CustomRoleOption SeerOption;
-        public static CustomOption SeerPlayerCount;
-        public static CustomOption SeerMode;
-        public static CustomOption SeerModeBoth;
-        public static CustomOption SeerModeFlash;
-        public static CustomOption SeerModeSouls;
-        public static CustomOption SeerLimitSoulDuration;
-        public static CustomOption SeerSoulDuration;
-
         public static CustomRoleOption MadSeerOption;
         public static CustomOption MadSeerPlayerCount;
         public static CustomOption MadSeerMode;
@@ -1289,11 +1280,7 @@ namespace SuperNewRoles.Modules
             DarkKillerPlayerCount = Create(316, true, CustomOptionType.Impostor, "SettingPlayerCountName", ImpostorPlayers[0], ImpostorPlayers[1], ImpostorPlayers[2], ImpostorPlayers[3], DarkKillerOption);
             DarkKillerKillCoolTime = Create(317, true, CustomOptionType.Impostor, "DarkKillerKillCoolSetting", 20f, 2.5f, 60f, 2.5f, DarkKillerOption);
 
-            SeerOption = new(318, false, CustomOptionType.Crewmate, "SeerName", RoleClass.Seer.color, 1);
-            SeerPlayerCount = Create(319, false, CustomOptionType.Crewmate, "SettingPlayerCountName", CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], SeerOption);
-            SeerMode = Create(320, false, CustomOptionType.Crewmate, "SeerMode", new string[] { "SeerModeBoth", "SeerModeFlash", "SeerModeSouls" }, SeerOption);
-            SeerLimitSoulDuration = Create(321, false, CustomOptionType.Crewmate, "SeerLimitSoulDuration", false, SeerOption);
-            SeerSoulDuration = Create(322, false, CustomOptionType.Crewmate, "SeerSoulDuration", 15f, 0f, 120f, 5f, SeerLimitSoulDuration, format: "unitCouples");
+            Roles.CrewMate.Seer.SetupCustomOptions();
 
             MadSeerOption = new(323, false, CustomOptionType.Crewmate, "MadSeerName", RoleClass.MadSeer.color, 1);
             MadSeerPlayerCount = Create(324, false, CustomOptionType.Crewmate, "SettingPlayerCountName", CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], MadSeerOption);
