@@ -53,28 +53,28 @@ namespace SuperNewRoles.Roles
                         case RoleId.Seer:
                             DeadBodyPositions = RoleClass.Seer.deadBodyPositions;
                             RoleClass.Seer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = RoleClass.Seer.limitSoulDuration;
+                            limitSoulDuration = CustomOptions.SeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.Seer.soulDuration;
                             if (RoleClass.Seer.mode is not 0 and not 2) return;
                             break;
                         case RoleId.MadSeer:
                             DeadBodyPositions = RoleClass.MadSeer.deadBodyPositions;
                             RoleClass.MadSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = RoleClass.MadSeer.limitSoulDuration;
+                            limitSoulDuration = CustomOptions.MadSeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.MadSeer.soulDuration;
                             if (RoleClass.MadSeer.mode is not 0 and not 2) return;
                             break;
                         case RoleId.EvilSeer:
                             DeadBodyPositions = Impostor.EvilSeer.deadBodyPositions;
                             Impostor.EvilSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = Impostor.EvilSeer.limitSoulDuration;
+                            limitSoulDuration = Impostor.EvilSeer.EvilSeerLimitSoulDuration.GetBool();
                             soulDuration = Impostor.EvilSeer.soulDuration;
                             if (Impostor.EvilSeer.mode is not 0 and not 2) return;
                             break;
                         case RoleId.SeerFriends:
                             DeadBodyPositions = RoleClass.SeerFriends.deadBodyPositions;
                             RoleClass.SeerFriends.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = RoleClass.SeerFriends.limitSoulDuration;
+                            limitSoulDuration = CustomOptions.SeerFriendsLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.SeerFriends.soulDuration;
                             if (RoleClass.SeerFriends.mode is not 0 and not 2) return;
                             break;
@@ -82,7 +82,7 @@ namespace SuperNewRoles.Roles
                         case RoleId.SidekickSeer:
                             DeadBodyPositions = RoleClass.JackalSeer.deadBodyPositions;
                             RoleClass.JackalSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = RoleClass.JackalSeer.limitSoulDuration;
+                            limitSoulDuration = CustomOptions.JackalSeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.JackalSeer.soulDuration;
                             if (RoleClass.JackalSeer.mode is not 0 and not 2) return;
                             break;
