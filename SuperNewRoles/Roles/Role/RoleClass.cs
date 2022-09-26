@@ -1529,14 +1529,12 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static bool limitSoulDuration;
             public static int mode;
 
             public static void ClearAndReload()
             {
                 SeerPlayer = new();
                 deadBodyPositions = new();
-                limitSoulDuration = CustomOptions.SeerLimitSoulDuration.GetBool();
                 soulDuration = CustomOptions.SeerSoulDuration.GetFloat();
                 mode = CustomOptions.SeerMode.GetSelection();
             }
@@ -1548,7 +1546,6 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static bool limitSoulDuration;
             public static int mode;
 
             public static bool IsUseVent;
@@ -1560,7 +1557,6 @@ namespace SuperNewRoles.Roles
             {
                 MadSeerPlayer = new();
                 deadBodyPositions = new();
-                limitSoulDuration = CustomOptions.MadSeerLimitSoulDuration.GetBool();
                 soulDuration = CustomOptions.MadSeerSoulDuration.GetFloat();
                 mode = CustomOptions.MadSeerMode.GetSelection();
 
@@ -1697,7 +1693,6 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static bool limitSoulDuration;
             public static int mode;
 
             public static bool IsUseVent;
@@ -1709,7 +1704,6 @@ namespace SuperNewRoles.Roles
                 SeerFriendsPlayer = new();
 
                 deadBodyPositions = new();
-                limitSoulDuration = CustomOptions.SeerFriendsLimitSoulDuration.GetBool();
                 soulDuration = CustomOptions.SeerFriendsSoulDuration.GetFloat();
                 mode = CustomOptions.SeerFriendsMode.GetSelection();
 
@@ -1738,7 +1732,6 @@ namespace SuperNewRoles.Roles
 
             public static List<Vector3> deadBodyPositions;
             public static float soulDuration;
-            public static bool limitSoulDuration;
             public static int mode;
 
             public static float KillCoolDown;
@@ -1757,7 +1750,6 @@ namespace SuperNewRoles.Roles
                 FakeSidekickSeerPlayer = new();
 
                 deadBodyPositions = new();
-                limitSoulDuration = CustomOptions.JackalSeerLimitSoulDuration.GetBool();
                 soulDuration = CustomOptions.JackalSeerSoulDuration.GetFloat();
                 mode = CustomOptions.JackalSeerMode.GetSelection();
 
