@@ -657,7 +657,7 @@ namespace SuperNewRoles.Buttons
                 () =>
                 {
                     var target_JS = PlayerControlFixedUpdatePatch.JackalSetTarget();
-                    if (target_JS && RoleHelpers.IsAlive(PlayerControl.LocalPlayer) && PlayerControl.LocalPlayer.CanMove && RoleClass.JackalSeer.CanCreateSidekick)
+                    if (target_JS && RoleHelpers.IsAlive(PlayerControl.LocalPlayer) && PlayerControl.LocalPlayer.CanMove && Roles.Neutral.JackalSeer.CanCreateSidekick)
                     {
                         bool IsFakeSidekickSeer = EvilEraser.IsBlockAndTryUse(EvilEraser.BlockTypes.JackalSeerSidekick, target_JS);
                         MessageWriter killWriter = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId, (byte)CustomRPC.CreateSidekickSeer, SendOption.Reliable, -1);
@@ -665,18 +665,18 @@ namespace SuperNewRoles.Buttons
                         killWriter.Write(IsFakeSidekickSeer);
                         AmongUsClient.Instance.FinishRpcImmediately(killWriter);
                         RPCProcedure.CreateSidekickSeer(target_JS.PlayerId, IsFakeSidekickSeer);
-                        RoleClass.JackalSeer.CanCreateSidekick = false;
-                        JackalSeer.ResetCoolDown();
+                        Roles.Neutral.JackalSeer.CanCreateSidekick = false;
+                        Roles.Neutral.JackalSeer.ResetCoolDown();
                     }
                 },
-                (bool isAlive, RoleId role) => { return isAlive && role == RoleId.JackalSeer && ModeHandler.IsMode(ModeId.Default) && RoleClass.JackalSeer.CanCreateSidekick && CustomOptions.JackalSeerCreateSidekick.GetBool(); },
+                (bool isAlive, RoleId role) => { return isAlive && role == RoleId.JackalSeer && ModeHandler.IsMode(ModeId.Default) && Roles.Neutral.JackalSeer.CanCreateSidekick && Roles.Neutral.JackalSeer.JackalSeerCreateSidekick.GetBool(); },
                 () =>
                 {
                     return PlayerControlFixedUpdatePatch.JackalSetTarget() && PlayerControl.LocalPlayer.CanMove;
                 },
                 () =>
                 {
-                    if (PlayerControl.LocalPlayer.IsRole(RoleId.JackalSeer)) { JackalSeer.EndMeeting(); }
+                    if (PlayerControl.LocalPlayer.IsRole(RoleId.JackalSeer)) { Roles.Neutral.JackalSeer.EndMeeting(); }
                 },
                 RoleClass.Jackal.GetButtonSprite(),
                 new Vector3(-1.8f, -0.06f, 0),
@@ -703,7 +703,7 @@ namespace SuperNewRoles.Buttons
                                 Jackal.ResetCoolDown();
                                 break;
                             case RoleId.JackalSeer:
-                                JackalSeer.ResetCoolDown();
+                                Roles.Neutral.JackalSeer.ResetCoolDown();
                                 break;
                             case RoleId.TeleportingJackal:
                                 TeleportingJackal.ResetCoolDowns();
@@ -719,7 +719,7 @@ namespace SuperNewRoles.Buttons
                 () =>
                 {
                     if (PlayerControl.LocalPlayer.IsRole(RoleId.Jackal)) { Jackal.EndMeeting(); }
-                    if (PlayerControl.LocalPlayer.IsRole(RoleId.JackalSeer)) { JackalSeer.EndMeeting(); }
+                    if (PlayerControl.LocalPlayer.IsRole(RoleId.JackalSeer)) { Roles.Neutral.JackalSeer.EndMeeting(); }
                 },
                 __instance.KillButton.graphic.sprite,
                 new Vector3(0, 1, 0),

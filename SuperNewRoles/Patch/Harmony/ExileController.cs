@@ -20,7 +20,7 @@ namespace SuperNewRoles.Patch.Harmony
         {
             var MyRole = PlayerControl.LocalPlayer.GetRole();
             Jackal.JackalFixedPatch.Postfix(__instance, MyRole);
-            JackalSeer.JackalSeerFixedPatch.Postfix(__instance, MyRole);
+            Roles.Neutral.JackalSeer.JackalSeerFixedPatch.Postfix(__instance, MyRole);
         }
     }
 }

@@ -462,7 +462,7 @@ namespace SuperNewRoles.Modules
         public static CustomRoleOption DarkKillerOption;
         public static CustomOption DarkKillerPlayerCount;
         public static CustomOption DarkKillerKillCoolTime;
-        
+
         public static CustomRoleOption TeleportingJackalOption;
         public static CustomOption TeleportingJackalPlayerCount;
         public static CustomOption TeleportingJackalKillCoolDown;
@@ -537,21 +537,6 @@ namespace SuperNewRoles.Modules
         public static CustomOption BlackCatCheckImpostorTask;
         public static CustomOption BlackCatIsUseVent;
         public static CustomOption BlackCatIsImpostorLight;
-
-        public static CustomRoleOption JackalSeerOption;
-        public static CustomOption JackalSeerPlayerCount;
-        public static CustomOption JackalSeerMode;
-        public static CustomOption JackalSeerModeBoth;
-        public static CustomOption JackalSeerModeFlash;
-        public static CustomOption JackalSeerModeSouls;
-        public static CustomOption JackalSeerLimitSoulDuration;
-        public static CustomOption JackalSeerSoulDuration;
-        public static CustomOption JackalSeerKillCoolDown;
-        public static CustomOption JackalSeerUseVent;
-        public static CustomOption JackalSeerUseSabo;
-        public static CustomOption JackalSeerIsImpostorLight;
-        public static CustomOption JackalSeerCreateSidekick;
-        public static CustomOption JackalSeerNewJackalCreateSidekick;
 
         public static CustomRoleOption AssassinAndMarineOption;
         public static CustomOption AssassinPlayerCount;
@@ -1312,17 +1297,7 @@ namespace SuperNewRoles.Modules
             SeerFriendsLongTask = SeerFriendsoption.Item3;
             SeerFriendsCheckJackalTask = Create(374, false, CustomOptionType.Crewmate, "MadMateCheckImpostorTaskSetting", rates4, SeerFriendsIsCheckJackal);
 
-            JackalSeerOption = new(375, false, CustomOptionType.Neutral, "JackalSeerName", RoleClass.JackalSeer.color, 1);
-            JackalSeerPlayerCount = Create(376, false, CustomOptionType.Neutral, "SettingPlayerCountName", CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], JackalSeerOption);
-            JackalSeerMode = Create(377, false, CustomOptionType.Neutral, "SeerMode", new string[] { "SeerModeBoth", "SeerModeFlash", "SeerModeSouls" }, JackalSeerOption);
-            JackalSeerLimitSoulDuration = Create(378, false, CustomOptionType.Neutral, "SeerLimitSoulDuration", false, JackalSeerOption);
-            JackalSeerSoulDuration = Create(379, false, CustomOptionType.Neutral, "SeerSoulDuration", 15f, 0f, 120f, 5f, JackalSeerLimitSoulDuration, format: "unitCouples");
-            JackalSeerKillCoolDown = Create(380, false, CustomOptionType.Neutral, "JackalCoolDownSetting", 30f, 2.5f, 60f, 2.5f, JackalSeerOption, format: "unitSeconds");
-            JackalSeerUseVent = Create(381, false, CustomOptionType.Neutral, "JackalUseVentSetting", true, JackalSeerOption);
-            JackalSeerUseSabo = Create(382, false, CustomOptionType.Neutral, "JackalUseSaboSetting", false, JackalSeerOption);
-            JackalSeerIsImpostorLight = Create(383, false, CustomOptionType.Neutral, "MadMateImpostorLightSetting", false, JackalSeerOption);
-            JackalSeerCreateSidekick = Create(384, false, CustomOptionType.Neutral, "JackalCreateSidekickSetting", false, JackalSeerOption);
-            JackalSeerNewJackalCreateSidekick = Create(385, false, CustomOptionType.Neutral, "JackalNewJackalCreateSidekickSetting", false, JackalSeerCreateSidekick);
+            Roles.Neutral.JackalSeer.SetupCustomOptions();
 
             AssassinAndMarineOption = new(386, true, CustomOptionType.Impostor, "AssassinAndMarineName", Color.white, 1);
             AssassinPlayerCount = Create(387, true, CustomOptionType.Impostor, "AssassinSettingPlayerCountName", ImpostorPlayers[0], ImpostorPlayers[1], ImpostorPlayers[2], ImpostorPlayers[3], AssassinAndMarineOption);

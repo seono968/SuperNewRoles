@@ -479,10 +479,10 @@ namespace SuperNewRoles
                     RoleClass.SeerFriends.SeerFriendsPlayer.Add(player);
                     break;
                 case RoleId.JackalSeer:
-                    RoleClass.JackalSeer.JackalSeerPlayer.Add(player);
+                    Roles.Neutral.JackalSeer.JackalSeerPlayer.Add(player);
                     break;
                 case RoleId.SidekickSeer:
-                    RoleClass.JackalSeer.SidekickSeerPlayer.Add(player);
+                    Roles.Neutral.JackalSeer.SidekickSeerPlayer.Add(player);
                     break;
                 case RoleId.Assassin:
                     RoleClass.Assassin.AssassinPlayer.Add(player);
@@ -908,10 +908,10 @@ namespace SuperNewRoles
                     RoleClass.SeerFriends.SeerFriendsPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.JackalSeer:
-                    RoleClass.JackalSeer.JackalSeerPlayer.RemoveAll(ClearRemove);
+                    Roles.Neutral.JackalSeer.JackalSeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.SidekickSeer:
-                    RoleClass.JackalSeer.SidekickSeerPlayer.RemoveAll(ClearRemove);
+                    Roles.Neutral.JackalSeer.SidekickSeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.Assassin:
                     RoleClass.Assassin.AssassinPlayer.RemoveAll(ClearRemove);
@@ -1143,7 +1143,7 @@ namespace SuperNewRoles
                 RoleId.Fox => RoleClass.Fox.IsUseVent,
                 RoleId.Demon => RoleClass.Demon.IsUseVent,
                 RoleId.SeerFriends => RoleClass.SeerFriends.IsUseVent,
-                RoleId.JackalSeer or RoleId.SidekickSeer => RoleClass.JackalSeer.IsUseVent,
+                RoleId.JackalSeer or RoleId.SidekickSeer => Roles.Neutral.JackalSeer.IsUseVent,
                 RoleId.MadCleaner => RoleClass.MadCleaner.IsUseVent,
                 RoleId.Arsonist => RoleClass.Arsonist.IsUseVent,
                 RoleId.Vulture => RoleClass.Vulture.IsUseVent,
@@ -1199,7 +1199,7 @@ namespace SuperNewRoles
                 RoleId.Jester => RoleClass.Jester.IsUseSabo && ModeHandler.IsMode(ModeId.Default),
                 RoleId.Sidekick or RoleId.Jackal => RoleClass.Jackal.IsUseSabo,
                 RoleId.TeleportingJackal => RoleClass.TeleportingJackal.IsUseSabo,
-                RoleId.SidekickSeer or RoleId.JackalSeer => RoleClass.JackalSeer.IsUseSabo,
+                RoleId.SidekickSeer or RoleId.JackalSeer => Roles.Neutral.JackalSeer.IsUseSabo,
                 RoleId.Egoist => RoleClass.Egoist.UseSabo,
                 RoleId.Stefinder => CustomOptions.StefinderSabo.GetBool(),
                 _ => false,
@@ -1225,7 +1225,7 @@ namespace SuperNewRoles
                     RoleId.Jackal or RoleId.Sidekick => RoleClass.Jackal.IsImpostorLight,
                     RoleId.JackalFriends => RoleClass.JackalFriends.IsImpostorLight,
                     RoleId.SeerFriends => RoleClass.SeerFriends.IsImpostorLight,
-                    RoleId.JackalSeer or RoleId.SidekickSeer => RoleClass.JackalSeer.IsImpostorLight,
+                    RoleId.JackalSeer or RoleId.SidekickSeer => Roles.Neutral.JackalSeer.IsImpostorLight,
                     RoleId.MadCleaner => RoleClass.MadCleaner.IsImpostorLight,
                     RoleId.MayorFriends => RoleClass.MayorFriends.IsImpostorLight,
                     RoleId.BlackCat => RoleClass.BlackCat.IsImpostorLight,
@@ -1514,8 +1514,8 @@ namespace SuperNewRoles
                 else if (RoleClass.Demon.DemonPlayer.IsCheckListPlayerControl(player)) return RoleId.Demon;
                 else if (RoleClass.TaskManager.TaskManagerPlayer.IsCheckListPlayerControl(player)) return RoleId.TaskManager;
                 else if (RoleClass.SeerFriends.SeerFriendsPlayer.IsCheckListPlayerControl(player)) return RoleId.SeerFriends;
-                else if (RoleClass.JackalSeer.JackalSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.JackalSeer;
-                else if (RoleClass.JackalSeer.SidekickSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.SidekickSeer;
+                else if (Roles.Neutral.JackalSeer.JackalSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.JackalSeer;
+                else if (Roles.Neutral.JackalSeer.SidekickSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.SidekickSeer;
                 else if (RoleClass.Assassin.AssassinPlayer.IsCheckListPlayerControl(player)) return RoleId.Assassin;
                 else if (RoleClass.Marine.MarinePlayer.IsCheckListPlayerControl(player)) return RoleId.Marine;
                 else if (RoleClass.SeerFriends.SeerFriendsPlayer.IsCheckListPlayerControl(player)) return RoleId.SeerFriends;

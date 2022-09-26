@@ -758,12 +758,12 @@ namespace SuperNewRoles.Modules
         }
         public static void SidekickSeerPromotes()
         {
-            foreach (PlayerControl p in RoleClass.JackalSeer.SidekickSeerPlayer.ToArray())
+            foreach (PlayerControl p in Roles.Neutral.JackalSeer.SidekickSeerPlayer.ToArray())
             {
                 p.ClearRole();
                 p.SetRole(RoleId.JackalSeer);
                 //無限サイドキック化の設定の取得(CanCreateSidekickにfalseが代入されると新ジャッカルにSKボタンが表示されなくなる)
-                RoleClass.JackalSeer.CanCreateSidekick = CustomOptions.JackalSeerNewJackalCreateSidekick.GetBool();
+                Roles.Neutral.JackalSeer.CanCreateSidekick = Roles.Neutral.JackalSeer.JackalSeerNewJackalCreateSidekick.GetBool();
             }
             PlayerControlHepler.RefreshRoleDescription(PlayerControl.LocalPlayer);
             ChacheManager.ResetMyRoleChache();
@@ -791,13 +791,13 @@ namespace SuperNewRoles.Modules
             if (player == null) return;
             if (IsFake)
             {
-                RoleClass.JackalSeer.FakeSidekickSeerPlayer.Add(player);
+                Roles.Neutral.JackalSeer.FakeSidekickSeerPlayer.Add(player);
             }
             else
             {
                 DestroyableSingleton<RoleManager>.Instance.SetRole(player, RoleTypes.Crewmate);
                 player.ClearRole();
-                RoleClass.JackalSeer.SidekickSeerPlayer.Add(player);
+                Roles.Neutral.JackalSeer.SidekickSeerPlayer.Add(player);
                 PlayerControlHepler.RefreshRoleDescription(PlayerControl.LocalPlayer);
                 ChacheManager.ResetMyRoleChache();
             }

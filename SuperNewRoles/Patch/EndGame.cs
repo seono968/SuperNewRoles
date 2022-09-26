@@ -545,8 +545,8 @@ namespace SuperNewRoles.Patch
             notWinners.AddRange(RoleClass.MadMaker.MadMakerPlayer);
             notWinners.AddRange(RoleClass.Demon.DemonPlayer);
             notWinners.AddRange(RoleClass.SeerFriends.SeerFriendsPlayer);
-            notWinners.AddRange(RoleClass.JackalSeer.JackalSeerPlayer);
-            notWinners.AddRange(RoleClass.JackalSeer.SidekickSeerPlayer);
+            notWinners.AddRange(Roles.Neutral.JackalSeer.JackalSeerPlayer);
+            notWinners.AddRange(Roles.Neutral.JackalSeer.SidekickSeerPlayer);
             notWinners.AddRange(RoleClass.Arsonist.ArsonistPlayer);
             notWinners.AddRange(RoleClass.Vulture.VulturePlayer);
             notWinners.AddRange(RoleClass.MadCleaner.MadCleanerPlayer);
@@ -796,7 +796,7 @@ namespace SuperNewRoles.Patch
             }
             foreach (PlayerControl player in RoleClass.Stefinder.StefinderPlayer)
             {
-                if(player.IsAlive() && CustomOptions.StefinderSoloWin.GetBool())
+                if (player.IsAlive() && CustomOptions.StefinderSoloWin.GetBool())
                 {
                     if (!RoleClass.Stefinder.IsKillPlayer.Contains(player.PlayerId) &&
                        (AdditionalTempData.gameOverReason == GameOverReason.HumansByTask ||

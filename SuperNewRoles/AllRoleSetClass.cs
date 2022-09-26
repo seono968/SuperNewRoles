@@ -882,7 +882,7 @@ namespace SuperNewRoles
                 RoleId.Demon => CustomOptions.DemonPlayerCount.GetFloat(),
                 RoleId.TaskManager => CustomOptions.TaskManagerPlayerCount.GetFloat(),
                 RoleId.SeerFriends => CustomOptions.SeerFriendsPlayerCount.GetFloat(),
-                RoleId.JackalSeer => CustomOptions.JackalSeerPlayerCount.GetFloat(),
+                RoleId.JackalSeer => Roles.Neutral.JackalSeer.JackalSeerPlayerCount.GetFloat(),
                 RoleId.Assassin => CustomOptions.AssassinPlayerCount.GetFloat(),
                 RoleId.Marine => CustomOptions.MarinePlayerCount.GetFloat(),
                 RoleId.Arsonist => CustomOptions.ArsonistPlayerCount.GetFloat(),

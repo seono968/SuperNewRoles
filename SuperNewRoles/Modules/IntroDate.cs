@@ -171,8 +171,8 @@ namespace SuperNewRoles.Modules
         public static IntroDate DemonIntro = new("Demon", RoleClass.Demon.color, 1, RoleId.Demon, TeamRoleType.Neutral);
         public static IntroDate TaskManagerIntro = new("TaskManager", RoleClass.TaskManager.color, 1, RoleId.TaskManager);
         public static IntroDate SeerFriendsIntro = new("SeerFriends", RoleClass.SeerFriends.color, 1, RoleId.SeerFriends);
-        public static IntroDate JackalSeerIntro = new("JackalSeer", RoleClass.JackalSeer.color, 1, RoleId.JackalSeer, TeamRoleType.Neutral);
-        public static IntroDate SidekickSeerIntro = new("SidekickSeer", RoleClass.JackalSeer.color, 1, RoleId.SidekickSeer, TeamRoleType.Neutral);
+        public static IntroDate JackalSeerIntro = new("JackalSeer", Roles.Neutral.JackalSeer.color, 1, RoleId.JackalSeer, TeamRoleType.Neutral);
+        public static IntroDate SidekickSeerIntro = new("SidekickSeer", Roles.Neutral.JackalSeer.color, 1, RoleId.SidekickSeer, TeamRoleType.Neutral);
         public static IntroDate AssassinIntro = new("Assassin", RoleClass.Assassin.color, 1, RoleId.Assassin);
         public static IntroDate MarineIntro = new("Marine", RoleClass.Marine.color, 1, RoleId.Marine);
         public static IntroDate ArsonistIntro = new("Arsonist", RoleClass.Arsonist.color, 1, RoleId.Arsonist, TeamRoleType.Neutral);

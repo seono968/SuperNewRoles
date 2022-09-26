@@ -117,11 +117,11 @@ namespace SuperNewRoles.Roles.CrewMate
                             break;
                         case RoleId.JackalSeer:
                         case RoleId.SidekickSeer:
-                            DeadBodyPositions = RoleClass.JackalSeer.deadBodyPositions;
-                            RoleClass.JackalSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = CustomOptions.JackalSeerLimitSoulDuration.GetBool();
-                            soulDuration = RoleClass.JackalSeer.soulDuration;
-                            if (CustomOptions.JackalSeerMode.GetSelection() is not 0 and not 2) return;
+                            DeadBodyPositions = Neutral.JackalSeer.deadBodyPositions;
+                            Neutral.JackalSeer.deadBodyPositions = new List<Vector3>();
+                            limitSoulDuration = Neutral.JackalSeer.JackalSeerLimitSoulDuration.GetBool();
+                            soulDuration = Neutral.JackalSeer.soulDuration;
+                            if (Neutral.JackalSeer.JackalSeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                     }
                     foreach (Vector3 pos in DeadBodyPositions)
@@ -177,8 +177,8 @@ namespace SuperNewRoles.Roles.CrewMate
                                 break;
                             case RoleId.JackalSeer:
                             case RoleId.SidekickSeer:
-                                if (RoleClass.JackalSeer.deadBodyPositions != null) RoleClass.JackalSeer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = CustomOptions.JackalSeerMode.GetSelection() <= 1;
+                                if (Neutral.JackalSeer.deadBodyPositions != null) Roles.Neutral.JackalSeer.deadBodyPositions.Add(target.transform.position);
+                                ModeFlag = Neutral.JackalSeer.JackalSeerMode.GetSelection() <= 1;
                                 break;
                         }
                         if (PlayerControl.LocalPlayer.IsAlive() && CachedPlayer.LocalPlayer.PlayerId != target.PlayerId && ModeFlag)
