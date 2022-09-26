@@ -55,28 +55,28 @@ namespace SuperNewRoles.Roles
                             RoleClass.Seer.deadBodyPositions = new List<Vector3>();
                             limitSoulDuration = CustomOptions.SeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.Seer.soulDuration;
-                            if (RoleClass.Seer.mode is not 0 and not 2) return;
+                            if (CustomOptions.SeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.MadSeer:
                             DeadBodyPositions = RoleClass.MadSeer.deadBodyPositions;
                             RoleClass.MadSeer.deadBodyPositions = new List<Vector3>();
                             limitSoulDuration = CustomOptions.MadSeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.MadSeer.soulDuration;
-                            if (RoleClass.MadSeer.mode is not 0 and not 2) return;
+                            if (CustomOptions.MadSeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.EvilSeer:
                             DeadBodyPositions = Impostor.EvilSeer.deadBodyPositions;
                             Impostor.EvilSeer.deadBodyPositions = new List<Vector3>();
                             limitSoulDuration = Impostor.EvilSeer.EvilSeerLimitSoulDuration.GetBool();
                             soulDuration = Impostor.EvilSeer.soulDuration;
-                            if (Impostor.EvilSeer.mode is not 0 and not 2) return;
+                            if (Impostor.EvilSeer.EvilSeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.SeerFriends:
                             DeadBodyPositions = RoleClass.SeerFriends.deadBodyPositions;
                             RoleClass.SeerFriends.deadBodyPositions = new List<Vector3>();
                             limitSoulDuration = CustomOptions.SeerFriendsLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.SeerFriends.soulDuration;
-                            if (RoleClass.SeerFriends.mode is not 0 and not 2) return;
+                            if (CustomOptions.SeerFriendsMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.JackalSeer:
                         case RoleId.SidekickSeer:
@@ -84,7 +84,7 @@ namespace SuperNewRoles.Roles
                             RoleClass.JackalSeer.deadBodyPositions = new List<Vector3>();
                             limitSoulDuration = CustomOptions.JackalSeerLimitSoulDuration.GetBool();
                             soulDuration = RoleClass.JackalSeer.soulDuration;
-                            if (RoleClass.JackalSeer.mode is not 0 and not 2) return;
+                            if (CustomOptions.JackalSeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                     }
                     foreach (Vector3 pos in DeadBodyPositions)
@@ -124,24 +124,24 @@ namespace SuperNewRoles.Roles
                         {
                             case RoleId.Seer:
                                 if (RoleClass.Seer.deadBodyPositions != null) RoleClass.Seer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = RoleClass.Seer.mode <= 1;
+                                ModeFlag = CustomOptions.SeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.MadSeer:
                                 if (RoleClass.MadSeer.deadBodyPositions != null) RoleClass.MadSeer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = RoleClass.MadSeer.mode <= 1;
+                                ModeFlag = CustomOptions.MadSeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.EvilSeer:
                                 if (Impostor.EvilSeer.deadBodyPositions != null) Impostor.EvilSeer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = RoleClass.MadSeer.mode <= 1;
+                                ModeFlag = Impostor.EvilSeer.EvilSeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.SeerFriends:
                                 if (RoleClass.SeerFriends.deadBodyPositions != null) RoleClass.SeerFriends.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = RoleClass.SeerFriends.mode <= 1;
+                                ModeFlag = CustomOptions.SeerFriendsMode.GetSelection() <= 1;
                                 break;
                             case RoleId.JackalSeer:
                             case RoleId.SidekickSeer:
                                 if (RoleClass.JackalSeer.deadBodyPositions != null) RoleClass.JackalSeer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = RoleClass.JackalSeer.mode <= 1;
+                                ModeFlag = CustomOptions.JackalSeerMode.GetSelection() <= 1;
                                 break;
                         }
                         if (PlayerControl.LocalPlayer.IsAlive() && CachedPlayer.LocalPlayer.PlayerId != target.PlayerId && ModeFlag)

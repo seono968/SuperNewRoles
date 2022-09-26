@@ -34,13 +34,11 @@ namespace SuperNewRoles.Roles.Impostor
         public static List<Vector3> deadBodyPositions;
 
         public static float soulDuration;
-        public static int mode;
         public static void ClearAndReload()
         {
             EvilSeerPlayer = new();
             deadBodyPositions = new();
             soulDuration = EvilSeerSoulDuration.GetFloat();
-            mode = EvilSeerMode.GetSelection();
         }
 
     }
