@@ -95,11 +95,11 @@ namespace SuperNewRoles.Roles.CrewMate
                             if (SeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.MadSeer:
-                            DeadBodyPositions = RoleClass.MadSeer.deadBodyPositions;
-                            RoleClass.MadSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = CustomOptions.MadSeerLimitSoulDuration.GetBool();
-                            soulDuration = RoleClass.MadSeer.soulDuration;
-                            if (CustomOptions.MadSeerMode.GetSelection() is not 0 and not 2) return;
+                            DeadBodyPositions = Impostor.MadSeer.deadBodyPositions;
+                            Impostor.MadSeer.deadBodyPositions = new List<Vector3>();
+                            limitSoulDuration = Impostor.MadSeer.MadSeerLimitSoulDuration.GetBool();
+                            soulDuration = Impostor.MadSeer.soulDuration;
+                            if (Impostor.MadSeer.MadSeerMode.GetSelection() is not 0 and not 2) return;
                             break;
                         case RoleId.EvilSeer:
                             DeadBodyPositions = Impostor.EvilSeer.deadBodyPositions;
@@ -164,8 +164,8 @@ namespace SuperNewRoles.Roles.CrewMate
                                 ModeFlag = SeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.MadSeer:
-                                if (RoleClass.MadSeer.deadBodyPositions != null) RoleClass.MadSeer.deadBodyPositions.Add(target.transform.position);
-                                ModeFlag = CustomOptions.MadSeerMode.GetSelection() <= 1;
+                                if (Impostor.MadSeer.deadBodyPositions != null) Impostor.MadSeer.deadBodyPositions.Add(target.transform.position);
+                                ModeFlag = Impostor.MadSeer.MadSeerMode.GetSelection() <= 1;
                                 break;
                             case RoleId.EvilSeer:
                                 if (Impostor.EvilSeer.deadBodyPositions != null) Impostor.EvilSeer.deadBodyPositions.Add(target.transform.position);

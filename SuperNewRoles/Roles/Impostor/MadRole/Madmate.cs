@@ -26,8 +26,8 @@ namespace SuperNewRoles.Roles
                     CheckTask = RoleClass.MadJester.ImpostorCheckTask;
                     break;
                 case RoleId.MadSeer:
-                    if (!RoleClass.MadSeer.IsImpostorCheck) return false;
-                    CheckTask = RoleClass.MadSeer.ImpostorCheckTask;
+                    if (!Impostor.MadSeer.IsImpostorCheck) return false;
+                    CheckTask = Impostor.MadSeer.ImpostorCheckTask;
                     break;
                 case RoleId.BlackCat:
                     if (!RoleClass.BlackCat.IsImpostorCheck) return false;

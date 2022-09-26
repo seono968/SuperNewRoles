@@ -42,7 +42,7 @@ namespace SuperNewRoles.Roles
             SabotageManager.ClearAndReloads();
             Madmate.CheckedImpostor = new();
             Roles.MadMayor.CheckedImpostor = new();
-            Roles.MadSeer.CheckedImpostor = new();
+            Impostor.MadSeer.CheckedImpostor = new();
             Roles.JackalFriends.CheckedJackal = new();
             Mode.BattleRoyal.Main.VentData = new();
             FinalStatusPatch.FinalStatusData.ClearFinalStatusData();
@@ -124,7 +124,7 @@ namespace SuperNewRoles.Roles
             Fox.ClearAndReload();
             DarkKiller.ClearAndReload();
             CrewMate.Seer.ClearAndReload();
-            MadSeer.ClearAndReload();
+            Impostor.MadSeer.ClearAndReload();
             Impostor.EvilSeer.ClearAndReload();
             RemoteSheriff.ClearAndReload();
             TeleportingJackal.ClearAndReload();
@@ -1523,42 +1523,6 @@ namespace SuperNewRoles.Roles
             }
         }
 
-        public static class MadSeer
-        {
-            public static List<PlayerControl> MadSeerPlayer;
-            public static Color color = ImpostorRed;
-            public static List<Vector3> deadBodyPositions;
-
-            public static float soulDuration;
-
-            public static bool IsUseVent;
-            public static bool IsImpostorLight;
-            public static bool IsImpostorCheck;
-            public static int ImpostorCheckTask;
-
-            public static void ClearAndReload()
-            {
-                MadSeerPlayer = new();
-                deadBodyPositions = new();
-                soulDuration = CustomOptions.MadSeerSoulDuration.GetFloat();
-
-                IsImpostorCheck = CustomOptions.MadSeerIsCheckImpostor.GetBool();
-                IsUseVent = CustomOptions.MadSeerIsUseVent.GetBool();
-                IsImpostorLight = CustomOptions.MadSeerIsImpostorLight.GetBool();
-                int Common = CustomOptions.MadSeerCommonTask.GetInt();
-                int Long = CustomOptions.MadSeerLongTask.GetInt();
-                int Short = CustomOptions.MadSeerShortTask.GetInt();
-                int AllTask = Common + Long + Short;
-                if (AllTask == 0)
-                {
-                    Common = PlayerControl.GameOptions.NumCommonTasks;
-                    Long = PlayerControl.GameOptions.NumLongTasks;
-                    Short = PlayerControl.GameOptions.NumShortTasks;
-                }
-                ImpostorCheckTask = (int)(AllTask * (int.Parse(CustomOptions.MadSeerCheckImpostorTask.GetString().Replace("%", "")) / 100f));
-                Roles.MadSeer.CheckedImpostor = new();
-            }
-        }
         public static class RemoteSheriff
         {
             public static List<PlayerControl> RemoteSheriffPlayer;

@@ -538,7 +538,7 @@ namespace SuperNewRoles.Patch
             notWinners.AddRange(RoleClass.MadStuntMan.MadStuntManPlayer);
             notWinners.AddRange(RoleClass.MadHawk.MadHawkPlayer);
             notWinners.AddRange(RoleClass.MadJester.MadJesterPlayer);
-            notWinners.AddRange(RoleClass.MadSeer.MadSeerPlayer);
+            notWinners.AddRange(Roles.Impostor.MadSeer.MadSeerPlayer);
             notWinners.AddRange(RoleClass.FalseCharges.FalseChargesPlayer);
             notWinners.AddRange(RoleClass.Fox.FoxPlayer);
             notWinners.AddRange(BotManager.AllBots);

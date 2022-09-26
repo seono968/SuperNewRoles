@@ -455,7 +455,7 @@ namespace SuperNewRoles
                     Roles.CrewMate.Seer.SeerPlayer.Add(player);
                     break;
                 case RoleId.MadSeer:
-                    RoleClass.MadSeer.MadSeerPlayer.Add(player);
+                    MadSeer.MadSeerPlayer.Add(player);
                     break;
                 case RoleId.EvilSeer:
                     EvilSeer.EvilSeerPlayer.Add(player);
@@ -884,7 +884,7 @@ namespace SuperNewRoles
                     Roles.CrewMate.Seer.SeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.MadSeer:
-                    RoleClass.MadSeer.MadSeerPlayer.RemoveAll(ClearRemove);
+                    MadSeer.MadSeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.EvilSeer:
                     EvilSeer.EvilSeerPlayer.RemoveAll(ClearRemove);
@@ -1138,7 +1138,7 @@ namespace SuperNewRoles
                 RoleId.MadJester => RoleClass.MadJester.IsUseVent,
                 RoleId.MadStuntMan => RoleClass.MadStuntMan.IsUseVent,
                 RoleId.MadHawk => RoleClass.MadHawk.IsUseVent,
-                RoleId.MadSeer => RoleClass.MadSeer.IsUseVent,
+                RoleId.MadSeer => MadSeer.IsUseVent,
                 RoleId.MadMaker => RoleClass.MadMaker.IsUseVent,
                 RoleId.Fox => RoleClass.Fox.IsUseVent,
                 RoleId.Demon => RoleClass.Demon.IsUseVent,
@@ -1218,7 +1218,7 @@ namespace SuperNewRoles
                     RoleId.MadStuntMan => RoleClass.MadStuntMan.IsImpostorLight,
                     RoleId.MadHawk => RoleClass.MadHawk.IsImpostorLight,
                     RoleId.MadJester => RoleClass.MadJester.IsImpostorLight,
-                    RoleId.MadSeer => RoleClass.MadSeer.IsImpostorLight,
+                    RoleId.MadSeer => MadSeer.IsImpostorLight,
                     RoleId.Fox => RoleClass.Fox.IsImpostorLight,
                     RoleId.TeleportingJackal => RoleClass.TeleportingJackal.IsImpostorLight,
                     RoleId.MadMaker => RoleClass.MadMaker.IsImpostorLight,
@@ -1499,7 +1499,7 @@ namespace SuperNewRoles
                 else if (RoleClass.Vampire.VampirePlayer.IsCheckListPlayerControl(player)) return RoleId.Vampire;
                 else if (RoleClass.DarkKiller.DarkKillerPlayer.IsCheckListPlayerControl(player)) return RoleId.DarkKiller;
                 else if (Roles.CrewMate.Seer.SeerPlayer.IsCheckListPlayerControl(player)) return RoleId.Seer;
-                else if (RoleClass.MadSeer.MadSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.MadSeer;
+                else if (MadSeer.MadSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.MadSeer;
                 else if (EvilSeer.EvilSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.EvilSeer;
                 else if (RoleClass.RemoteSheriff.RemoteSheriffPlayer.IsCheckListPlayerControl(player)) return RoleId.RemoteSheriff;
                 else if (RoleClass.Vampire.VampirePlayer.IsCheckListPlayerControl(player)) return RoleId.Vampire;

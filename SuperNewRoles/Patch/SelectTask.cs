@@ -37,7 +37,7 @@ namespace SuperNewRoles.Patch
             Dictionary<RoleId, (int, int, int)> taskData = new();
             if (MadMateCheckImpostorTask.GetBool()) taskData.Add(RoleId.MadMate, (MadMateCommonTask.GetInt(), MadMateShortTask.GetInt(), MadMateLongTask.GetInt()));
             if (MadMayorIsCheckImpostor.GetBool()) taskData.Add(RoleId.MadMayor, (MadMayorCommonTask.GetInt(), MadMayorShortTask.GetInt(), MadMayorLongTask.GetInt()));
-            if (MadSeerIsCheckImpostor.GetBool()) taskData.Add(RoleId.MadSeer, (MadSeerCommonTask.GetInt(), MadSeerShortTask.GetInt(), MadSeerLongTask.GetInt()));
+            if (Roles.Impostor.MadSeer.MadSeerIsCheckImpostor.GetBool()) taskData.Add(RoleId.MadSeer, (Roles.Impostor.MadSeer.MadSeerCommonTask.GetInt(), Roles.Impostor.MadSeer.MadSeerShortTask.GetInt(), Roles.Impostor.MadSeer.MadSeerLongTask.GetInt()));
             if (BlackCatIsCheckImpostor.GetBool()) taskData.Add(RoleId.BlackCat, (BlackCatCommonTask.GetInt(), BlackCatShortTask.GetInt(), BlackCatLongTask.GetInt()));
             if (JackalFriendsIsCheckJackal.GetBool()) taskData.Add(RoleId.JackalFriends, (JackalFriendsCommonTask.GetInt(), JackalFriendsShortTask.GetInt(), JackalFriendsLongTask.GetInt()));
             if (SeerFriendsIsCheckJackal.GetBool()) taskData.Add(RoleId.SeerFriends, (SeerFriendsCommonTask.GetInt(), SeerFriendsShortTask.GetInt(), SeerFriendsLongTask.GetInt()));
