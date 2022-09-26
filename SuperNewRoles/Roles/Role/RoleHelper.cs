@@ -458,7 +458,7 @@ namespace SuperNewRoles
                     RoleClass.MadSeer.MadSeerPlayer.Add(player);
                     break;
                 case RoleId.EvilSeer:
-                    RoleClass.EvilSeer.EvilSeerPlayer.Add(player);
+                    EvilSeer.EvilSeerPlayer.Add(player);
                     break;
                 case RoleId.RemoteSheriff:
                     RoleClass.RemoteSheriff.RemoteSheriffPlayer.Add(player);
@@ -887,7 +887,7 @@ namespace SuperNewRoles
                     RoleClass.MadSeer.MadSeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.EvilSeer:
-                    RoleClass.EvilSeer.EvilSeerPlayer.RemoveAll(ClearRemove);
+                    EvilSeer.EvilSeerPlayer.RemoveAll(ClearRemove);
                     break;
                 case RoleId.TeleportingJackal:
                     RoleClass.TeleportingJackal.TeleportingJackalPlayer.RemoveAll(ClearRemove);
@@ -1045,7 +1045,7 @@ namespace SuperNewRoles
                 case RoleId.Doppelganger:
                     RoleClass.Doppelganger.DoppelggerPlayer.RemoveAll(ClearRemove);
                     break;
-                //ロールリモベ
+                    //ロールリモベ
             }
             ChacheManager.ResetMyRoleChache();
         }
@@ -1103,7 +1103,7 @@ namespace SuperNewRoles
                 case RoleId.Stefinder:
                 case RoleId.PartTimer:
                 case RoleId.Photographer:
-                //タスククリアか
+                    //タスククリアか
                     IsTaskClear = true;
                     break;
             }
@@ -1266,7 +1266,7 @@ namespace SuperNewRoles
                 case RoleId.Stefinder:
                 case RoleId.PartTimer:
                 case RoleId.Photographer:
-                //第三か
+                    //第三か
                     IsNeutral = true;
                     break;
             }
@@ -1500,7 +1500,7 @@ namespace SuperNewRoles
                 else if (RoleClass.DarkKiller.DarkKillerPlayer.IsCheckListPlayerControl(player)) return RoleId.DarkKiller;
                 else if (RoleClass.Seer.SeerPlayer.IsCheckListPlayerControl(player)) return RoleId.Seer;
                 else if (RoleClass.MadSeer.MadSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.MadSeer;
-                else if (RoleClass.EvilSeer.EvilSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.EvilSeer;
+                else if (EvilSeer.EvilSeerPlayer.IsCheckListPlayerControl(player)) return RoleId.EvilSeer;
                 else if (RoleClass.RemoteSheriff.RemoteSheriffPlayer.IsCheckListPlayerControl(player)) return RoleId.RemoteSheriff;
                 else if (RoleClass.Vampire.VampirePlayer.IsCheckListPlayerControl(player)) return RoleId.Vampire;
                 else if (RoleClass.DarkKiller.DarkKillerPlayer.IsCheckListPlayerControl(player)) return RoleId.DarkKiller;

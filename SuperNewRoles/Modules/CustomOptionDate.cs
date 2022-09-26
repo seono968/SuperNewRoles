@@ -488,15 +488,6 @@ namespace SuperNewRoles.Modules
         public static CustomOption MadSeerIsUseVent;
         public static CustomOption MadSeerIsImpostorLight;
 
-        public static CustomRoleOption EvilSeerOption;
-        public static CustomOption EvilSeerPlayerCount;
-        public static CustomOption EvilSeerMode;
-        public static CustomOption EvilSeerModeBoth;
-        public static CustomOption EvilSeerModeFlash;
-        public static CustomOption EvilSeerModeSouls;
-        public static CustomOption EvilSeerLimitSoulDuration;
-        public static CustomOption EvilSeerSoulDuration;
-
         public static CustomRoleOption TeleportingJackalOption;
         public static CustomOption TeleportingJackalPlayerCount;
         public static CustomOption TeleportingJackalKillCoolDown;
@@ -1318,11 +1309,7 @@ namespace SuperNewRoles.Modules
             MadSeerLongTask = madseeroption.Item3;
             MadSeerCheckImpostorTask = Create(333, false, CustomOptionType.Crewmate, "MadMateCheckImpostorTaskSetting", rates4, MadSeerIsCheckImpostor);
 
-            EvilSeerOption = new(334, false, CustomOptionType.Impostor, "EvilSeerName", RoleClass.EvilSeer.color, 1);
-            EvilSeerPlayerCount = Create(335, false, CustomOptionType.Impostor, "SettingPlayerCountName", ImpostorPlayers[0], ImpostorPlayers[1], ImpostorPlayers[2], ImpostorPlayers[3], EvilSeerOption);
-            EvilSeerMode = Create(336, false, CustomOptionType.Impostor, "SeerMode", new string[] { "SeerModeBoth", "SeerModeFlash", "SeerModeSouls" }, EvilSeerOption);
-            EvilSeerLimitSoulDuration = Create(337, false, CustomOptionType.Impostor, "SeerLimitSoulDuration", false, EvilSeerOption);
-            EvilSeerSoulDuration = Create(338, false, CustomOptionType.Impostor, "SeerSoulDuration", 15f, 0f, 120f, 5f, EvilSeerLimitSoulDuration, format: "unitCouples");
+            Roles.Impostor.EvilSeer.SetupCustomOptions();
 
             TeleportingJackalOption = new(339, false, CustomOptionType.Neutral, "TeleportingJackalName", RoleClass.TeleportingJackal.color, 1);
             TeleportingJackalPlayerCount = Create(340, false, CustomOptionType.Neutral, "SettingPlayerCountName", CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], TeleportingJackalOption);
