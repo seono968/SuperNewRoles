@@ -164,7 +164,7 @@ namespace SuperNewRoles.Modules
         public static IntroDate DarkKillerIntro = new("DarkKiller", RoleClass.DarkKiller.color, 1, RoleId.DarkKiller, TeamRoleType.Impostor);
         public static IntroDate SeerIntro = new("Seer", RoleClass.Seer.color, 1, RoleId.Seer);
         public static IntroDate MadSeerIntro = new("MadSeer", RoleClass.MadSeer.color, 1, RoleId.MadSeer);
-        public static IntroDate EvilSeerIntro = new("EvilSeer", RoleClass.EvilSeer.color, 1, RoleId.EvilSeer, TeamRoleType.Impostor);
+        public static IntroDate EvilSeerIntro = new("EvilSeer", Roles.Impostor.EvilSeer.color, 1, RoleId.EvilSeer, TeamRoleType.Impostor);
         public static IntroDate RemoteSheriffIntro = new("RemoteSheriff", RoleClass.RemoteSheriff.color, 1, RoleId.RemoteSheriff);
         public static IntroDate TeleportingJackalIntro = new("TeleportingJackal", RoleClass.TeleportingJackal.color, 1, RoleId.TeleportingJackal);
         public static IntroDate MadMakerIntro = new("MadMaker", RoleClass.MadMaker.color, 1, RoleId.MadMaker);

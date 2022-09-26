@@ -65,11 +65,11 @@ namespace SuperNewRoles.Roles
                             if (RoleClass.MadSeer.mode is not 0 and not 2) return;
                             break;
                         case RoleId.EvilSeer:
-                            DeadBodyPositions = RoleClass.EvilSeer.deadBodyPositions;
-                            RoleClass.EvilSeer.deadBodyPositions = new List<Vector3>();
-                            limitSoulDuration = RoleClass.EvilSeer.limitSoulDuration;
-                            soulDuration = RoleClass.EvilSeer.soulDuration;
-                            if (RoleClass.EvilSeer.mode is not 0 and not 2) return;
+                            DeadBodyPositions = Impostor.EvilSeer.deadBodyPositions;
+                            Impostor.EvilSeer.deadBodyPositions = new List<Vector3>();
+                            limitSoulDuration = Impostor.EvilSeer.limitSoulDuration;
+                            soulDuration = Impostor.EvilSeer.soulDuration;
+                            if (Impostor.EvilSeer.mode is not 0 and not 2) return;
                             break;
                         case RoleId.SeerFriends:
                             DeadBodyPositions = RoleClass.SeerFriends.deadBodyPositions;
@@ -131,7 +131,7 @@ namespace SuperNewRoles.Roles
                                 ModeFlag = RoleClass.MadSeer.mode <= 1;
                                 break;
                             case RoleId.EvilSeer:
-                                if (RoleClass.EvilSeer.deadBodyPositions != null) RoleClass.EvilSeer.deadBodyPositions.Add(target.transform.position);
+                                if (Impostor.EvilSeer.deadBodyPositions != null) Impostor.EvilSeer.deadBodyPositions.Add(target.transform.position);
                                 ModeFlag = RoleClass.MadSeer.mode <= 1;
                                 break;
                             case RoleId.SeerFriends:

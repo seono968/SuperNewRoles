@@ -125,7 +125,7 @@ namespace SuperNewRoles.Roles
             DarkKiller.ClearAndReload();
             Seer.ClearAndReload();
             MadSeer.ClearAndReload();
-            EvilSeer.ClearAndReload();
+            Impostor.EvilSeer.ClearAndReload();
             RemoteSheriff.ClearAndReload();
             TeleportingJackal.ClearAndReload();
             MadMaker.ClearAndReload();
@@ -1581,24 +1581,6 @@ namespace SuperNewRoles.Roles
                 Roles.MadSeer.CheckedImpostor = new();
             }
         }
-        public static class EvilSeer
-        {
-            public static List<PlayerControl> EvilSeerPlayer;
-            public static Color32 color = ImpostorRed;
-            public static List<Vector3> deadBodyPositions;
-
-            public static float soulDuration;
-            public static bool limitSoulDuration;
-            public static int mode;
-            public static void ClearAndReload()
-            {
-                EvilSeerPlayer = new();
-                deadBodyPositions = new();
-                limitSoulDuration = CustomOptions.EvilSeerLimitSoulDuration.GetBool();
-                soulDuration = CustomOptions.EvilSeerSoulDuration.GetFloat();
-                mode = CustomOptions.EvilSeerMode.GetSelection();
-            }
-        }
         public static class RemoteSheriff
         {
             public static List<PlayerControl> RemoteSheriffPlayer;
@@ -2214,7 +2196,7 @@ namespace SuperNewRoles.Roles
         {
             public static List<PlayerControl> SuicideWisherPlayer;
             public static Color32 color = ImpostorRed;
-            
+
             public static Sprite GetButtonSprite() => ModHelpers.LoadSpriteFromResources("SuperNewRoles.Resources.SuicideWisherButton.png", 115f);
 
             public static void ClearAndReload()
