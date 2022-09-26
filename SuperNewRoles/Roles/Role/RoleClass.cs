@@ -1529,14 +1529,12 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static int mode;
 
             public static void ClearAndReload()
             {
                 SeerPlayer = new();
                 deadBodyPositions = new();
                 soulDuration = CustomOptions.SeerSoulDuration.GetFloat();
-                mode = CustomOptions.SeerMode.GetSelection();
             }
         }
         public static class MadSeer
@@ -1546,7 +1544,6 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static int mode;
 
             public static bool IsUseVent;
             public static bool IsImpostorLight;
@@ -1558,7 +1555,6 @@ namespace SuperNewRoles.Roles
                 MadSeerPlayer = new();
                 deadBodyPositions = new();
                 soulDuration = CustomOptions.MadSeerSoulDuration.GetFloat();
-                mode = CustomOptions.MadSeerMode.GetSelection();
 
                 IsImpostorCheck = CustomOptions.MadSeerIsCheckImpostor.GetBool();
                 IsUseVent = CustomOptions.MadSeerIsUseVent.GetBool();
@@ -1693,7 +1689,6 @@ namespace SuperNewRoles.Roles
             public static List<Vector3> deadBodyPositions;
 
             public static float soulDuration;
-            public static int mode;
 
             public static bool IsUseVent;
             public static bool IsImpostorLight;
@@ -1705,7 +1700,6 @@ namespace SuperNewRoles.Roles
 
                 deadBodyPositions = new();
                 soulDuration = CustomOptions.SeerFriendsSoulDuration.GetFloat();
-                mode = CustomOptions.SeerFriendsMode.GetSelection();
 
                 IsJackalCheck = CustomOptions.SeerFriendsIsCheckJackal.GetBool();
                 IsUseVent = CustomOptions.SeerFriendsIsUseVent.GetBool();
@@ -1732,7 +1726,6 @@ namespace SuperNewRoles.Roles
 
             public static List<Vector3> deadBodyPositions;
             public static float soulDuration;
-            public static int mode;
 
             public static float KillCoolDown;
             public static bool IsUseVent;
@@ -1751,7 +1744,6 @@ namespace SuperNewRoles.Roles
 
                 deadBodyPositions = new();
                 soulDuration = CustomOptions.JackalSeerSoulDuration.GetFloat();
-                mode = CustomOptions.JackalSeerMode.GetSelection();
 
                 KillCoolDown = CustomOptions.JackalSeerKillCoolDown.GetFloat();
                 IsUseVent = CustomOptions.JackalSeerUseVent.GetBool();
