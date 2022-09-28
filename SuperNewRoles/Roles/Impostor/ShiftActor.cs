@@ -8,7 +8,6 @@ namespace SuperNewRoles.Roles.Impostor
 {
     public static class ShiftActor
     {
-        public const int OptionId = 894;// 設定のId
         // CustomOptionDate
         public static CustomRoleOption ShiftActorOption;
         public static CustomOption ShiftActorPlayerCount;
@@ -18,12 +17,13 @@ namespace SuperNewRoles.Roles.Impostor
         public static CustomOption ShiftActorCanWatchAttribute;
         public static void SetupCustomOptions()
         {
-            ShiftActorOption = new(OptionId, false, CustomOptionType.Impostor, "ShiftActorName", color, 1);
-            ShiftActorPlayerCount = CustomOption.Create(OptionId + 1, false, CustomOptionType.Impostor, "SettingPlayerCountName", ImpostorPlayers[0], ImpostorPlayers[1], ImpostorPlayers[2], ImpostorPlayers[3], ShiftActorOption);
-            ShiftActorKillCool = CustomOption.Create(OptionId + 2, false, CustomOptionType.Impostor, "SheriffCoolDownSetting", 30f, 2.5f, 60f, 2.5f, ShiftActorOption, format: "unitSeconds");
-            ShiftActorShiftLimit = CustomOption.Create(OptionId + 3, false, CustomOptionType.Impostor, "SettingLimitName", 1f, 0f, 5f, 1f, ShiftActorOption);
-            ShiftActorRightChance = CustomOption.Create(OptionId + 4, false, CustomOptionType.Impostor, "RightChance", rates[1..], ShiftActorOption);
-            ShiftActorCanWatchAttribute = CustomOption.Create(OptionId + 5, false, CustomOptionType.Impostor, "CanWatchAttribute", false, ShiftActorOption);
+            var id = 894;// 設定のId
+            ShiftActorOption = new(id, false, CustomOptionType.Impostor, "ShiftActorName", color, 1);
+            ShiftActorPlayerCount = CustomOption.Create(id + 1, false, CustomOptionType.Impostor, "SettingPlayerCountName", ImpostorPlayers[0], ImpostorPlayers[1], ImpostorPlayers[2], ImpostorPlayers[3], ShiftActorOption);
+            ShiftActorKillCool = CustomOption.Create(id + 2, false, CustomOptionType.Impostor, "SheriffCoolDownSetting", 30f, 2.5f, 60f, 2.5f, ShiftActorOption, format: "unitSeconds");
+            ShiftActorShiftLimit = CustomOption.Create(id + 3, false, CustomOptionType.Impostor, "SettingLimitName", 1f, 0f, 5f, 1f, ShiftActorOption);
+            ShiftActorRightChance = CustomOption.Create(id + 4, false, CustomOptionType.Impostor, "RightChance", rates[1..], ShiftActorOption);
+            ShiftActorCanWatchAttribute = CustomOption.Create(id + 5, false, CustomOptionType.Impostor, "CanWatchAttribute", false, ShiftActorOption);
         }
 
         // RoleClass
