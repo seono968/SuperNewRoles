@@ -79,9 +79,8 @@ namespace SuperNewRoles.Roles.Impostor
             // ここからが表示関連
             var text1 = ModTranslation.GetString("ShiftActorText1"); // の役職は
             var text2 = ModTranslation.GetString("ShiftActorText2"); // です
-            var showtext = $"{target.name}{text1}{TargetRoleText}{text2}"; // ex)たろうの役職はパン屋 ♥です
-
-            new CustomMessage(showtext, 10);
+                                                                     // ex)たろうの役職はパン屋 ♥です
+            new CustomMessage($"{target.name}{text1}{TargetRoleText}{text2}", 10);
 
             Count++;
         }
