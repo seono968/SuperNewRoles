@@ -642,7 +642,6 @@ namespace SuperNewRoles
                 PlayerControlHepler.RefreshRoleDescription(PlayerControl.LocalPlayer);
             }
             SuperNewRolesPlugin.Logger.LogInfo(player.Data.PlayerName + " >= " + role);
-            ShiftActor.ShapeshifterSet();
             PlayerAnimation anim = PlayerAnimation.GetPlayerAnimation(player.PlayerId);
             if (anim != null) anim.HandleAnim(RpcAnimationType.Stop);
         }

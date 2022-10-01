@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SuperNewRoles.Buttons;
 using SuperNewRoles.Patch;
 using UnityEngine;
 using static SuperNewRoles.Modules.CustomOptions;
@@ -41,7 +42,8 @@ namespace SuperNewRoles.Roles.Impostor
             Count = 0;
             IsWatchAttribute = ShiftActorCanWatchAttribute.GetBool(); // 重複を見れるか
         }
-        public static bool CanShow = Count >= Limit;// シェイプカウントが上限より少ないか
+        private readonly static bool CanShow = Count > Limit;// シェイプカウントが上限より少ないか
+        private static Sprite GetButtonSprite() => ModHelpers.LoadSpriteFromResources("SuperNewRoles.Resources.SoothSayerButton.png", 115f);
 
         public static void Shapeshift(PlayerControl shapeshifter, PlayerControl target)
         {
@@ -84,13 +86,38 @@ namespace SuperNewRoles.Roles.Impostor
 
             Count++;
         }
-        public static void ShapeshifterSet()
+        private static CustomButton ShapeshiftButton;
+        public static void SetupCustomButtons(HudManager hm)
         {
-            foreach (PlayerControl p in Player)
+            Logger.Info("TOUTATSU", "BUTTON");
+            ShapeshiftButton = new(
+            () =>
+                {
+                    FastDestroyableSingleton<RoleManager>.Instance.SetRole(PlayerControl.LocalPlayer, RoleTypes.Shapeshifter);
+
+                    CachedPlayer.LocalPlayer.Data.Role.TryCast<ShapeshifterRole>().UseAbility();
+
+                    FastDestroyableSingleton<RoleManager>.Instance.SetRole(PlayerControl.LocalPlayer, RoleTypes.Impostor);
+                },
+                (bool isAlive, RoleId role) => { return isAlive && role == RoleId.ShiftActor && true; },
+                () => { return PlayerControl.LocalPlayer.CanMove && CanShow; },
+                () => { },
+                GetButtonSprite(),
+                new(-1.8f, -0.06f, 0),
+                hm,
+                hm.AbilityButton,
+                KeyCode.F,
+                49,
+                () => { return false; }
+            )
             {
-                Logger.Info("シェイプシフター割り当て", "ShiftActor");
-                DestroyableSingleton<RoleManager>.Instance.SetRole(p, RoleTypes.Shapeshifter);
-            }
+                buttonText = ModTranslation.GetString("Shapeshift"),
+                showButtonText = true
+            };
+        }
+        private static void ResetCoolDown()
+        {
+
         }
     }
 }

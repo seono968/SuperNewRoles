@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2617,7 +2618,14 @@ namespace SuperNewRoles.Buttons
             RoleClass.Doppelganger.DoppelgangerDurationText.enableWordWrapping = false;
             RoleClass.Doppelganger.DoppelgangerDurationText.transform.localScale = Vector3.one * 0.5f;
             RoleClass.Doppelganger.DoppelgangerDurationText.transform.localPosition += new Vector3(-2.575f, -0.95f, 0);
-
+            try
+            {
+                Roles.Impostor.ShiftActor.SetupCustomButtons(__instance);
+            }
+            catch (Exception e)
+            {
+                Logger.Info($"{e}", "しふとあくたあ");
+            }
             SetCustomButtonCooldowns();
         }
     }
