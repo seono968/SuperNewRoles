@@ -473,8 +473,7 @@ namespace SuperNewRoles
             //成功確率が0%ならfalseを返す
             if (SucsessChance == 0) return false;
             //成功確率が最大と一緒かそれ以上ならtrueを返す
-            if (SucsessChance >= MaxChance) return true;
-            return UnityEngine.Random.Range(0, MaxChance) <= SucsessChance;
+            return SucsessChance >= MaxChance ? true : UnityEngine.Random.Range(0, MaxChance) <= SucsessChance;
         }
         /// <summary>
         /// ランダムを取得します。max = 10だと0～10まで取得できます

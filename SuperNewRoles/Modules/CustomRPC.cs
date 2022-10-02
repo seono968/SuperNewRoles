@@ -570,11 +570,7 @@ namespace SuperNewRoles.Modules
         }
         public static void ShareSNRversion(int major, int minor, int build, int revision, Guid guid, int clientId)
         {
-            Version ver;
-            if (revision < 0)
-                ver = new(major, minor, build);
-            else
-                ver = new(major, minor, build, revision);
+            Version ver = revision < 0 ? (new(major, minor, build)) : (new(major, minor, build, revision));
             ShareGameVersion.GameStartManagerUpdatePatch.VersionPlayers[clientId] = new PlayerVersion(ver, guid);
         }
         public static void SetRole(byte playerid, byte RPCRoleId)

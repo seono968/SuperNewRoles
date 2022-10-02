@@ -77,14 +77,7 @@ namespace SuperNewRoles.CustomObject
                 string countdata = "000" + i.ToString();
                 if (i >= 10)
                 {
-                    if (i >= 100)
-                    {
-                        countdata = "0" + i.ToString();
-                    }
-                    else
-                    {
-                        countdata = "00" + i.ToString();
-                    }
+                    countdata = i >= 100 ? "0" + i.ToString() : "00" + i.ToString();
                 }
                 Logger.Info(path + countdata + ".png");
                 Sprites.Add(ModHelpers.LoadSpriteFromResources(path + countdata + ".png", pixelsPerUnit));
@@ -125,7 +118,7 @@ namespace SuperNewRoles.CustomObject
                 return;
             }
             updatetime -= Time.fixedDeltaTime;
-            if (OnFixedUpdate != null) OnFixedUpdate();
+            OnFixedUpdate?.Invoke();
             if (updatetime <= 0)
             {
                 index++;
@@ -139,10 +132,7 @@ namespace SuperNewRoles.CustomObject
                     {
                         Playing = false;
                         Logger.Info($"チェック:{OnAnimationEnd != null}");
-                        if (OnAnimationEnd != null)
-                        {
-                            OnAnimationEnd();
-                        }
+                        OnAnimationEnd?.Invoke();
                         return;
                     }
                 }
