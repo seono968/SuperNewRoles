@@ -35,6 +35,7 @@ namespace SuperNewRoles.CustomObject
 
             HudManager.Instance.StartCoroutine(Effects.Lerp(0.6f, new Action<float>((p) =>
             {
+                if (beacon.BeaconRenderer == null) return;
                 beacon.BeaconRenderer.sprite = GetBeaconAnimationSprite((int)(p * beaconAnimationSprites.Length));
                 beacon.BeaconRenderer.sprite = GetBeaconAnimationSprite(0);
             })));
@@ -65,11 +66,10 @@ namespace SuperNewRoles.CustomObject
         public static void ClearBeacons()
         {
             int[] num = { -1, -2, -3 };
-            foreach (var n in num)
+            foreach (var n in AllBeacons)
             {
-                Logger.Info($"Beacon{Conjurer.Round}{Conjurer.Count + n}をClearします", "ClearBeacons");
-                GameObject.Find($"Beacon{Conjurer.Round}{Conjurer.Count + n}")?.SetActive(false);
-                GameObject.Find($"Beacon{Conjurer.Round}{Conjurer.Count + n}(Clone)")?.SetActive(false);
+                if (n.GameObject == null) continue;
+                n.GameObject.SetActive(false);
             }
         }
     }
