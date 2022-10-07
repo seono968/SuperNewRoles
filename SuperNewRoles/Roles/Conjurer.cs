@@ -96,12 +96,9 @@ namespace SuperNewRoles.Roles.Impostor
             return inside;
         }
 
-        public static void AddBeacon(byte[] buff)
+        public static void AddBeacon(Vector3 pos)
         {
-            Vector3 position = Vector3.zero;
-            position.x = BitConverter.ToSingle(buff, 0 * sizeof(float));
-            position.y = BitConverter.ToSingle(buff, 1 * sizeof(float));
-            new Beacon(position);
+            new Beacon(pos);
         }
 
         public static CustomButton BeaconButton;
@@ -114,11 +111,7 @@ namespace SuperNewRoles.Roles.Impostor
                 if (CanAddBeacon())
                 {
                     Logger.Info($"Now:{Count}", "Conjurer Add");
-                    byte[] buff = new byte[sizeof(float) * 2];
-                    Buffer.BlockCopy(BitConverter.GetBytes(PlayerControl.LocalPlayer.transform.position.x), 0, buff, 0 * sizeof(float), sizeof(float));
-                    Buffer.BlockCopy(BitConverter.GetBytes(PlayerControl.LocalPlayer.transform.position.y), 0, buff, 1 * sizeof(float), sizeof(float));
-
-                    AddBeacon(buff);
+                    AddBeacon(CachedPlayer.LocalPlayer.transform.position);
 
                     // PositionsのCount番目に現在の座標を保存する
                     Positions[Count] = PlayerControl.LocalPlayer.transform.position;
