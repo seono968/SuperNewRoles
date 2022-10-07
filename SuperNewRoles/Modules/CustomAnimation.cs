@@ -55,15 +55,11 @@ namespace SuperNewRoles.Modules
         }
         public void AnimationUpdate(float Deltatime)
         {
+            if (render == null) { Animations.Remove(this); return; }
             if (!IsPlaying) return;
             Updatetime -= Deltatime;
             if (Updatetime <= 0)
             {
-                if (render == null)
-                {
-                    Animations.Remove(this);
-                    return;
-                }
                 render.sprite = Sprites[index];
                 index++;
 
