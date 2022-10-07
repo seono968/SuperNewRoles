@@ -28,6 +28,8 @@ namespace SuperNewRoles.Modules
         public SpriteRenderer render;
         public float Updatetime;
         public float UpdateDefaultTime;
+        public bool IsLoop;
+        public bool IsPlaying;
         public static List<CustomAnimation> Animations = new();
         public void Start(float freamlate, Transform obj)
         {
@@ -40,18 +42,20 @@ namespace SuperNewRoles.Modules
             Object = obj;
             render = obj.GetComponent<SpriteRenderer>();
             index = 0;
+            IsPlaying = true;
             Animations.Add(this);
         }
         public static void Update()
         {
             var deltatime = Time.deltaTime;
-            foreach (CustomAnimation anim in Animations)
+            foreach (CustomAnimation anim in Animations.ToArray())
             {
                 anim.AnimationUpdate(deltatime);
             }
         }
         public void AnimationUpdate(float Deltatime)
         {
+            if (!IsPlaying) return;
             Updatetime -= Deltatime;
             if (Updatetime <= 0)
             {
@@ -64,7 +68,14 @@ namespace SuperNewRoles.Modules
                 index++;
 
                 if (Sprites.Length <= index)
+                {
+                    if (!IsLoop)
+                    {
+                        IsPlaying = false;
+                        return;
+                    }
                     index = 0;
+                }
 
                 Updatetime = UpdateDefaultTime;
             }

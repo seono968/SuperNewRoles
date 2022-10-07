@@ -68,7 +68,7 @@ namespace SuperNewRoles.CustomObject
         public static void ClearBeacons()
         {
             maxid = 0;
-            int[] num = { 1, 2, 3 };
+            int[] num = { 0, 1, 2 };
             foreach (var n in num)
             {
                 Logger.Info($"Beacon{n}をClearします", "ClearBeacons");
