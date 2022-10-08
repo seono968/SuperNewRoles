@@ -681,6 +681,7 @@ namespace SuperNewRoles.Roles
             public static float CoolTime;
             public static DateTime ButtonTimer;
             public static Vector3 setpostion;
+            public static Dictionary<byte,Vector3> SetPositionSHR;
             public static Sprite GetNoSetButtonSprite() => ModHelpers.LoadSpriteFromResources("SuperNewRoles.Resources.MovingLocationSetButton.png", 115f);
 
             public static Sprite GetSetButtonSprite() => ModHelpers.LoadSpriteFromResources("SuperNewRoles.Resources.MovingTpButton.png", 115f);
@@ -690,6 +691,7 @@ namespace SuperNewRoles.Roles
                 MovingPlayer = new();
                 setpostion = new Vector3(0, 0, 0);
                 CoolTime = CustomOptions.MovingCoolTime.GetFloat();
+                SetPositionSHR = new();
             }
         }
         public static class Opportunist
@@ -2724,7 +2726,7 @@ namespace SuperNewRoles.Roles
             public static void ClearAndReload()
             {
                 WaveCannonJackalPlayer = new();
-                
+
             }
         }
         //新ロールクラス

@@ -46,7 +46,7 @@ namespace SuperNewRoles.Patches
             SyncSetting.CustomSyncSettings();
             if (RoleClass.Assassin.TriggerPlayer != null) return false;
             if (target.IsBot()) return true;
-            if (ModeHandler.IsMode(ModeId.SuperHostRoles) && !AmongUsClient.Instance.AmHost) return true;
+            if (ModeHandler.IsMode(ModeId.SuperHostRoles) && !AmongUsClient.Instance.AmHost){Logger.Info("OKASHIIIII") ;return true;}
             if (__instance.PlayerId != target.PlayerId)
             {
                 if (__instance.IsRole(RoleId.Doppelganger))
@@ -199,6 +199,13 @@ namespace SuperNewRoles.Patches
                         if (RoleClass.EvilButtoner.SkillCountSHR[__instance.PlayerId] + 1 >= 1)
                             EvilButtoner.EvilButtonerStartMeetingSHR(__instance);
                         return false;
+                    case RoleId.Moving:
+                    case RoleId.EvilMoving:
+                        if (!RoleClass.Moving.SetPositionSHR.ContainsKey(__instance.PlayerId))
+                            RoleClass.Moving.SetPositionSHR.Add(__instance.PlayerId,__instance.GetTruePosition());
+                        else
+                            __instance.RpcSnapTo(RoleClass.Moving.SetPositionSHR[__instance.PlayerId]);
+                        break;
                 }
             }
             return true;

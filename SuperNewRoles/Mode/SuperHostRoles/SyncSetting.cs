@@ -173,7 +173,7 @@ namespace SuperNewRoles.Mode.SuperHostRoles
                 case RoleId.DarkKiller:
                     optdata.killCooldown = KillCoolSet(CustomOptions.DarkKillerKillCoolTime.GetFloat());
                     break;
-                                case RoleId.Moving:
+                case RoleId.Moving:
                     optdata.RoleOptions.ShapeshifterCooldown = RoleClass.Moving.CoolTime;
                     break;
                 case RoleId.EvilMoving:
