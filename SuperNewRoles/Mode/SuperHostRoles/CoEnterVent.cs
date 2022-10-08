@@ -41,12 +41,15 @@ namespace SuperNewRoles.Mode.SuperHostRoles
                 case RoleId.SeerFriends:
                     if (RoleClass.SeerFriends.IsUseVent) return true;
                     break;
+
+                // ベントに入れなくする
                 case RoleId.RemoteSheriff:
                 case RoleId.Sheriff:
                 case RoleId.truelover:
                 case RoleId.FalseCharges:
                 case RoleId.ToiletFan:
                 case RoleId.NiceButtoner:
+                case RoleId.Moving:
                     break;
                 default:
                     return true;

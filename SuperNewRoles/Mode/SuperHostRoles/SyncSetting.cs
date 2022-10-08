@@ -173,6 +173,12 @@ namespace SuperNewRoles.Mode.SuperHostRoles
                 case RoleId.DarkKiller:
                     optdata.killCooldown = KillCoolSet(CustomOptions.DarkKillerKillCoolTime.GetFloat());
                     break;
+                                case RoleId.Moving:
+                    optdata.RoleOptions.ShapeshifterCooldown = RoleClass.Moving.CoolTime;
+                    break;
+                case RoleId.EvilMoving:
+                    optdata.RoleOptions.ShapeshifterCooldown = RoleClass.EvilMoving.CoolTime;
+                    break;
             }
             if (player.IsDead()) optdata.AnonymousVotes = false;
             optdata.RoleOptions.ShapeshifterLeaveSkin = false;

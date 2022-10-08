@@ -128,6 +128,7 @@ namespace SuperNewRoles.Mode.SuperHostRoles
             SetRoleDesync(RoleClass.RemoteSheriff.RemoteSheriffPlayer, RoleTypes.Shapeshifter);
             SetRoleDesync(RoleClass.ToiletFan.ToiletFanPlayer, RoleTypes.Shapeshifter);
             SetRoleDesync(RoleClass.NiceButtoner.NiceButtonerPlayer, RoleTypes.Shapeshifter);
+            SetRoleDesync(RoleClass.Moving.MovingPlayer, RoleTypes.Shapeshifter);
             /*============シェイプシフターDesync============*/
 
 
@@ -137,6 +138,7 @@ namespace SuperNewRoles.Mode.SuperHostRoles
             SetVanillaRole(RoleClass.EvilButtoner.EvilButtonerPlayer, RoleTypes.Shapeshifter, false);
             SetVanillaRole(RoleClass.SuicideWisher.SuicideWisherPlayer, RoleTypes.Shapeshifter, false);
             SetVanillaRole(RoleClass.Doppelganger.DoppelggerPlayer, RoleTypes.Shapeshifter, false);
+            SetVanillaRole(RoleClass.EvilMoving.EvilMovingPlayer, RoleTypes.Shapeshifter);
             /*============シェイプシフター役職設定============*/
 
             foreach (PlayerControl Player in RoleClass.Egoist.EgoistPlayer)
