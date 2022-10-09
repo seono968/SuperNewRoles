@@ -105,6 +105,7 @@ namespace SuperNewRoles.Patch
             if (exiled == null) return;
 
             Seer.ExileControllerWrapUpPatch.WrapUpPostfix();
+            Seer.WrapUp_ShowFlash();
             Nekomata.NekomataEnd(exiled);
 
             exiled.Object.Exiled();
