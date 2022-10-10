@@ -1,8 +1,8 @@
-
+using SuperNewRoles.Roles.API.Interface;
 
 
 namespace SuperNewRoles.Roles.API{
-    public class SoloRoleBase{
+    public abstract class CustomRoleOptionBase : IRoleOption{
 
     }
 }
