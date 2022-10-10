@@ -1,5 +1,5 @@
 namespace SuperNewRoles.Roles.API.Interface{
-    interface RoleOption{
+    interface IRoleOption{
         void SetupCustomOptions(int id);
     }
 }
