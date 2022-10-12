@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using SuperNewRoles.Patches;
 using SuperNewRoles.Roles;
+using SuperNewRoles.Roles.Impostor;
 
 namespace SuperNewRoles.Mode.SuperHostRoles.Roles
 {
@@ -33,6 +34,25 @@ namespace SuperNewRoles.Mode.SuperHostRoles.Roles
                         if (exiled.Object.IsRole(RoleId.BlackCat)) SuperNewRolesPlugin.Logger.LogInfo("[SHR:黒猫Info]Impostorを道連れ対象から除外しました");
                         else if (exiled.Object.IsRole(RoleId.EvilNekomata)) SuperNewRolesPlugin.Logger.LogInfo("[SHR:イビル猫又Info]Impostorを道連れ対象から除外しました");
                         else SuperNewRolesPlugin.Logger.LogError("[SHR:猫又Error]&[SHR:イビル猫又Error][NotImpostorExiled == true] 異常な抽選リストです");
+                    }
+                }
+                // 猫カボチャで。追放道連れにする
+                else if (exiled.Object.IsRole(RoleId.NekoKabocha) && NekoKabocha.CanRevengeExile)
+                {
+                    if (p1.Data.PlayerId != exiled.PlayerId && p1.IsAlive() && p1.IsPlayer() && !p1.IsBot())
+                    {
+                        if (p1.IsCrew() && NekoKabocha.CanRevengeCrew)
+                        {
+                            p.Add(p1);
+                        }
+                        else if (p1.IsNeutral() && NekoKabocha.CanRevengeNeut)
+                        {
+                            p.Add(p1);
+                        }
+                        else if (p1.IsImpostor() && NekoKabocha.CanRevengeImp)
+                        {
+                            p.Add(p1);
+                        }
                     }
                 }
                 //それ以外なら(ナイス猫又・設定オフ)
