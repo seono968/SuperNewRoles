@@ -44,7 +44,7 @@ namespace SuperNewRoles.Patches
     {
         static readonly string SNRCommander = $"<size=200%>{SuperNewRolesPlugin.ColorModName}</size>";
         public static string WelcomeToSuperNewRoles = $"<size=150%>Welcome To {SuperNewRolesPlugin.ColorModName}</size>";
-        
+
         public static bool Prefix(PlayerControl sourcePlayer, string chatText)
         {
             if (Mode.Werewolf.Main.IsChatBlock(sourcePlayer, chatText)) return false;
@@ -195,6 +195,15 @@ namespace SuperNewRoles.Patches
                     builder.AppendLine();
                 }
                 SendCommand(target, builder.ToString(), $"<size=200%>{OnGameEndPatch.WinText}</size>");
+                return false;
+            }
+            else if (
+                Commands[0].Equals("/MyRole", StringComparison.OrdinalIgnoreCase) ||
+                Commands[0].Equals("/mr", StringComparison.OrdinalIgnoreCase)
+                )
+            {
+                var intro = IntroDate.GetIntroDate(sourcePlayer.GetRole());
+                SendCommand(sourcePlayer, ModTranslation.GetString($"{sourcePlayer.GetRole()}Name")+ModTranslation.GetString($"{sourcePlayer.GetRole()}Description"));
                 return false;
             }
             else
