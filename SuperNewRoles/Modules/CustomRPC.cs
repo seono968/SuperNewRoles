@@ -21,7 +21,16 @@ namespace SuperNewRoles.Modules
 {
     public enum RoleId
     {
-        DefaultRole,
+        // VanillaRoles
+        Crewmate = -5,
+        Engineer,
+        Impostor,
+        Shapeshifter,
+        GuardianAngel,
+
+        DefaultRole = 0,
+
+        Scientist,
         SoothSayer,
         Jester,
         Lighter,
@@ -260,7 +269,7 @@ namespace SuperNewRoles.Modules
             if (showerid != CachedPlayer.LocalPlayer.PlayerId) return;
             PlayerControl target = ModHelpers.PlayerById(targetid);
             if (target == null) return;
-            PlayerControl.LocalPlayer.ProtectPlayer(target,0);
+            PlayerControl.LocalPlayer.ProtectPlayer(target, 0);
             PlayerControl.LocalPlayer.MurderPlayer(target);
         }
         public static void KnightProtectClear(byte Target)
@@ -289,7 +298,8 @@ namespace SuperNewRoles.Modules
             if (IsSelfDeath)
             {
                 source.MurderPlayer(source);
-            } else
+            }
+            else
             {
                 FastDestroyableSingleton<RoleManager>.Instance.SetRole(target, RoleTypes.Crewmate);
                 SetRole(targetid, (byte)RoleId.Pavlovsdogs);

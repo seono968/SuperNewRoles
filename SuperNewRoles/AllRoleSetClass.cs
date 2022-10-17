@@ -821,6 +821,19 @@ namespace SuperNewRoles
         }
         public static float GetPlayerCount(RoleId RoleDate)
         {
+            if (RoleDate.IsVanillaRole())
+            {
+                return RoleDate switch
+                {
+                    RoleId.Crewmate => (float)PlayerControl.GameOptions.RoleOptions.GetNumPerGame(RoleTypes.Crewmate),
+                    RoleId.Engineer => (float)PlayerControl.GameOptions.RoleOptions.GetNumPerGame(RoleTypes.Engineer),
+                    RoleId.Scientist => (float)PlayerControl.GameOptions.RoleOptions.GetNumPerGame(RoleTypes.Scientist),
+                    RoleId.Shapeshifter => (float)PlayerControl.GameOptions.RoleOptions.GetNumPerGame(RoleTypes.Shapeshifter),
+                    RoleId.GuardianAngel => (float)PlayerControl.GameOptions.RoleOptions.GetNumPerGame(RoleTypes.GuardianAngel),
+
+                    _ => 0
+                };
+            }
             return RoleDate switch
             {
                 RoleId.SoothSayer => CustomOptions.SoothSayerPlayerCount.GetFloat(),
