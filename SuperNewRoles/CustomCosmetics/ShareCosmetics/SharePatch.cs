@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using HarmonyLib;
 using Hazel;
@@ -42,3 +43,4 @@ namespace SuperNewRoles.CustomCosmetics.ShareCosmetics
         }
     }
 }
+*/

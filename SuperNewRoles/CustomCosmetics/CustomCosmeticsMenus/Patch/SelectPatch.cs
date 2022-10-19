@@ -1,3 +1,4 @@
+/*
 using HarmonyLib;
 using static SuperNewRoles.CustomCosmetics.CustomCosmeticsMenus.Patch.ObjectData;
 
@@ -89,3 +90,4 @@ namespace SuperNewRoles.CustomCosmetics.CustomCosmeticsMenus.Patch
         }
     }
 }
+*/

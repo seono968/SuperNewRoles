@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -136,6 +137,7 @@ namespace SuperNewRoles.CustomCosmetics
             /** Hidden Colors **/
 
             /** Add Colors **/
+            /*
             int id = 50000;
             foreach (CustomColor cc in colors)
             {
@@ -257,3 +259,4 @@ namespace SuperNewRoles.CustomCosmetics
         }
     }
 }
+*/

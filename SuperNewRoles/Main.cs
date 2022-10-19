@@ -50,7 +50,7 @@ namespace SuperNewRoles
             // All Load() Start
             ModTranslation.Load();
             ChacheManager.Load();
-            CustomCosmetics.CustomColors.Load();
+            //CustomCosmetics.CustomColors.Load();
             ConfigRoles.Load();
             CustomOptions.Load();
             Patches.FreeNamePatch.Initialize();

@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using BepInEx.Configuration;
 using TMPro;
@@ -284,3 +285,4 @@ namespace SuperNewRoles.CustomCosmetics.CustomCosmeticsMenus.Patch
         }
     }
 }
+*/

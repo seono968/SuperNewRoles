@@ -1,4 +1,4 @@
-
+/*
 
 namespace SuperNewRoles.CustomCosmetics
 {
@@ -10,3 +10,4 @@ namespace SuperNewRoles.CustomCosmetics
         }
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 using System.Runtime.Serialization;
 
 namespace SuperNewRoles.CustomCosmetics.ShareCosmetics
@@ -21,3 +22,4 @@ namespace SuperNewRoles.CustomCosmetics.ShareCosmetics
         public string Url { get; set; }
     }
 }
+*/

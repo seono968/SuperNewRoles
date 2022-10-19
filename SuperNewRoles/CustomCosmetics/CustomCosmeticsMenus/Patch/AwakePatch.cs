@@ -1,3 +1,4 @@
+/*
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -166,3 +167,4 @@ namespace SuperNewRoles.CustomCosmetics.CustomCosmeticsMenus.Patch
         }
     }
 }
+*/

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using BepInEx.IL2CPP.Utils;
 using HarmonyLib;
 using Newtonsoft.Json.Linq;
-using SuperNewRoles.CustomCosmetics;
+//using SuperNewRoles.CustomCosmetics;
 using SuperNewRoles.Mode;
 using SuperNewRoles.Patches;
 using TMPro;
@@ -99,10 +99,12 @@ namespace SuperNewRoles.Patches
                     __instance.text.text = $"{baseCredentials}\n{ModTranslation.GetString("creditsFull")}\n{__instance.text.text}";
                     __instance.transform.localPosition = new Vector3(4f, __instance.transform.localPosition.y, __instance.transform.localPosition.z);
                 }
+                /*
                 if (CustomHats.HatManagerPatch.IsLoadingnow)
                 {
                     __instance.text.text += $"\n{ModTranslation.GetString("LoadHat")}";
                 }
+                */
             }
         }
         public static GenericPopup popup;
@@ -259,9 +261,9 @@ namespace SuperNewRoles.Patches
                 {
                     __instance.StartCoroutine(ShowAnnouncementPopUp(__instance));
                 }
-                DownLoadCustomhat.Load();
+                /*DownLoadCustomhat.Load();
                 DownLoadClass.Load();
-                DownLoadClassVisor.Load();
+                DownLoadClassVisor.Load();*/
 
                 instance = __instance;
 
