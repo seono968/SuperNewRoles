@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace SuperNewRoles.Roles
 {
+    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     class Vampire
     {
         public static void WrapUp()
@@ -65,12 +66,15 @@ namespace SuperNewRoles.Roles
                 foreach (PlayerControl p in RoleClass.Vampire.VampirePlayer) if (p.IsAlive()) return;
                 PlayerControl.LocalPlayer.RpcMurderPlayer(PlayerControl.LocalPlayer);
             }
-            public static void AllClient() {
+            public static void AllClient()
+            {
                 Count--;
                 if (Count > 0) return;
                 Count = 3;
-                foreach (var data in RoleClass.Vampire.Targets.ToArray()) {
-                    if (data.Key == null || data.Value == null || !data.Key.IsRole(RoleId.Vampire) || data.Key.IsDead()|| data.Value.IsDead()) {
+                foreach (var data in RoleClass.Vampire.Targets.ToArray())
+                {
+                    if (data.Key == null || data.Value == null || !data.Key.IsRole(RoleId.Vampire) || data.Key.IsDead() || data.Value.IsDead())
+                    {
                         RoleClass.Vampire.Targets.Remove(data.Key);
                         continue;
                     }
@@ -105,6 +109,10 @@ namespace SuperNewRoles.Roles
                     RoleClass.Vampire.target = null;
                 }
             }
+        }
+        static void Prefix(MeetingHud __instance)
+        {
+            Logger.Info("ヴァンパイアが会議開始を検知したよ。");
         }
     }
 }
