@@ -97,28 +97,28 @@ namespace SuperNewRoles.Roles
                     TargetKilled();
                 }
             }
-            public static void TargetKilled()
-            {
-                MessageWriter writer = RPCHelper.StartRPC(CustomRPC.RPCMurderPlayer);
-                writer.Write(CachedPlayer.LocalPlayer.PlayerId);
-                writer.Write(RoleClass.Vampire.target.PlayerId);
-                writer.Write(0);
-                writer.EndRPC();
-                RPCProcedure.RPCMurderPlayer(CachedPlayer.LocalPlayer.PlayerId, RoleClass.Vampire.target.PlayerId, 0);
-                writer = RPCHelper.StartRPC(CustomRPC.SetVampireStatus);
-                writer.Write(CachedPlayer.LocalPlayer.PlayerId);
-                writer.Write(RoleClass.Vampire.target.PlayerId);
-                writer.Write(false);
-                writer.Write(RoleClass.Vampire.target.IsDead());
-                writer.EndRPC();
-                RPCProcedure.SetVampireStatus(CachedPlayer.LocalPlayer.PlayerId, RoleClass.Vampire.target.PlayerId, false, RoleClass.Vampire.target.IsDead());
-                RoleClass.Vampire.target = null;
-            }
         }
-        static void Prefix(MeetingHud __instance)
+        static void Postfix(MeetingHud __instance)
         {
             Logger.Info("ヴァンパイアの会議開始キル！");
-            FixedUpdate.TargetKilled();
+            TargetKilled();
+        }
+        public static void TargetKilled()
+        {
+            MessageWriter writer = RPCHelper.StartRPC(CustomRPC.RPCMurderPlayer);
+            writer.Write(CachedPlayer.LocalPlayer.PlayerId);
+            writer.Write(RoleClass.Vampire.target.PlayerId);
+            writer.Write(0);
+            writer.EndRPC();
+            RPCProcedure.RPCMurderPlayer(CachedPlayer.LocalPlayer.PlayerId, RoleClass.Vampire.target.PlayerId, 0);
+            writer = RPCHelper.StartRPC(CustomRPC.SetVampireStatus);
+            writer.Write(CachedPlayer.LocalPlayer.PlayerId);
+            writer.Write(RoleClass.Vampire.target.PlayerId);
+            writer.Write(false);
+            writer.Write(RoleClass.Vampire.target.IsDead());
+            writer.EndRPC();
+            RPCProcedure.SetVampireStatus(CachedPlayer.LocalPlayer.PlayerId, RoleClass.Vampire.target.PlayerId, false, RoleClass.Vampire.target.IsDead());
+            RoleClass.Vampire.target = null;
         }
     }
 }
