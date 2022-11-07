@@ -95,13 +95,26 @@ namespace SuperNewRoles.Roles
                 {
                     Logger.Info("ヴァンパイアの遅延キル！");
                     TargetKilled();
+                    RoleClass.Vampire.target = null;
                 }
             }
         }
-        static void Postfix(MeetingHud __instance)
+        static void Prefix(MeetingHud __instance)
         {
             Logger.Info("ヴァンパイアの会議開始キル！");
             TargetKilled();
+
+            //他プレイヤー視点でも対象プレイヤーをキルする処理
+            foreach (var data in RoleClass.Vampire.Targets)
+            {
+                if (data.Key == null) continue;
+                if (data.Value == null) continue;
+                if (!data.Key.IsRole(RoleId.Vampire)) continue;
+                if (data.Value.IsDead()) continue;
+                if (data.Key.IsDead()) continue;
+                data.Key.MurderPlayer(data.Value);
+            }
+            RoleClass.Vampire.target = null;
         }
         public static void TargetKilled()
         {
@@ -118,7 +131,6 @@ namespace SuperNewRoles.Roles
             writer.Write(RoleClass.Vampire.target.IsDead());
             writer.EndRPC();
             RPCProcedure.SetVampireStatus(CachedPlayer.LocalPlayer.PlayerId, RoleClass.Vampire.target.PlayerId, false, RoleClass.Vampire.target.IsDead());
-            RoleClass.Vampire.target = null;
         }
     }
 }
