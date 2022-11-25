@@ -12,12 +12,12 @@ namespace SuperNewRoles.Roles
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     class Vampire
     {
-        public static void WrapUp()
+        public static void WrapUp(PlayerControl exiled)
         {
             if (PlayerControl.LocalPlayer.IsRole(RoleId.Dependents) && PlayerControl.LocalPlayer.IsAlive())
             {
                 bool Is = true;
-                foreach (PlayerControl p in RoleClass.Vampire.VampirePlayer) if (p.IsAlive()) Is = false;
+                foreach (PlayerControl p in RoleClass.Vampire.VampirePlayer) if (p.IsAlive() && (exiled == null || exiled.PlayerId != p.PlayerId)) Is = false;
                 if (Is)
                     PlayerControl.LocalPlayer.RpcExiledUnchecked();
             }
@@ -63,6 +63,7 @@ namespace SuperNewRoles.Roles
             static int Count = 0;
             public static void DependentsOnly()
             {
+                if (RoleClass.IsMeeting) return;
                 foreach (PlayerControl p in RoleClass.Vampire.VampirePlayer) if (p.IsAlive()) return;
                 PlayerControl.LocalPlayer.RpcMurderPlayer(PlayerControl.LocalPlayer);
             }
